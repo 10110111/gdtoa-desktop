@@ -4,6 +4,11 @@ include("GNUInstallDirs")
 
 include_directories("${PROJECT_BINARY_DIR}")
 option(BUILD_SHARED_LIBS "Build shared library instead of static" ON)
+option(USE_LOCALE "Enable support for locale-specific decimal separator" ON)
+
+if(USE_LOCALE)
+    add_definitions(-DUSE_LOCALE)
+endif()
 
 set(gdtoa_SOURCES
         gdtoa/dmisc.c
