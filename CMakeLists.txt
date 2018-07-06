@@ -1,11 +1,13 @@
 cmake_minimum_required (VERSION 3.0)
-project (gdtoa C)
+project (gdtoa C CXX)
 include("GNUInstallDirs")
+set(CXX_STANDARD_REQUIRED 11)
 
 include_directories("${PROJECT_BINARY_DIR}")
 option(BUILD_SHARED_LIBS "Build shared library instead of static" ON)
 option(USE_LOCALE "Enable support for locale-specific decimal separator" ON)
 
+add_definitions(-DMULTIPLE_THREADS)
 if(USE_LOCALE)
     add_definitions(-DUSE_LOCALE)
 endif()
@@ -142,6 +144,7 @@ set(gdtoa_SOURCES
 	    gdtoa/strtorxL.c
 	    gdtoa/sum.c
 	    gdtoa/ulp.c
+        lock.cpp
         "${PROJECT_BINARY_DIR}/arith.h"
         "${PROJECT_BINARY_DIR}/gd_qnan.h"
 )
@@ -161,6 +164,7 @@ add_custom_command(
     VERBATIM)
 
 add_library(gdtoa ${gdtoa_SOURCES})
+set_property(TARGET gdtoa PROPERTY CXX_STANDARD 11)
 
 add_custom_command(
     OUTPUT "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h"
