@@ -7,6 +7,18 @@ include_directories("${PROJECT_BINARY_DIR}")
 option(BUILD_SHARED_LIBS "Build shared library instead of static" ON)
 option(USE_LOCALE "Enable support for locale-specific decimal separator" ON)
 option(RENAME_FUNCTIONS "Rename externally-visible functions to avoid conflict with system libraries" ON)
+option(ENABLE_SSE2 "Use SSE2 instructions instead of x87 to avoid inconsistent rounding" ON)
+
+set(strtod_c strtod.c)
+if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "i686")
+    if(ENABLE_SSE2)
+        message("++ Assuming the CPU does support SSE2, setting compiler flags to use it instead of x87")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse2 -mfpmath=sse")
+    else()
+        message("++ Using integer arithmetic in strtod")
+        set(strtod_c strtodnrp.c)
+    endif()
+endif()
 
 add_definitions(-DMULTIPLE_THREADS)
 if(USE_LOCALE)
@@ -129,7 +141,7 @@ set(gdtoa_SOURCES
 	    gdtoa/strtoIg.c
 	    gdtoa/strtoIx.c
 	    gdtoa/strtoIxL.c
-	    gdtoa/strtod.c
+	    gdtoa/${strtod_c}
 	    gdtoa/strtodI.c
 	    gdtoa/strtodg.c
 	    gdtoa/strtof.c
