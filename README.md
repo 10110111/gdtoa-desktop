@@ -29,6 +29,15 @@ This will install three files:
 /usr/local/include/gdtoa/gdtoa.h
 ```
 
+## Running tests
+After configuring the package using the `cmake` command, run
+```
+make check
+```
+This will run tests from the original library.
+
+NOTE: currently 6 tests fail on my x86 system, I'm not sure whether it's OK yet.
+
 ## Upgrading to a newer upstream version
 
 If you need to use a newer upstream version of the library, retaining the tweaks made here, and if this repo lags behind, you can upgrade your local copy manually like follows:
