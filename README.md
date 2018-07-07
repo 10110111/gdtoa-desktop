@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/10110111/gdtoa.svg?branch=master)](https://travis-ci.org/10110111/gdtoa)
 # gdtoa
 
 This is an adaptation of the binary↔decimal floating-point conversion library by David M. Gay to common desktop/server operating systems like Ubuntu and Fedora.
