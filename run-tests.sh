@@ -97,7 +97,8 @@ if ! rmdir "$bads" 2>/dev/null; then
     if ! rmdir "$bads" 2>/dev/null; then
         echo >&2
         echo " ** $(ls "$bads" | wc -l) tests FAILED" >&2
-        echo " See failure details in $PWD/$bads" >&2
+        echo " Details for failed tests are in $PWD/$bads" >&2
+        echo " Reference test results are in   $testsDir" >&2
         echo >&2
         exit 1
     fi
