@@ -51,3 +51,5 @@ If you need to use a newer upstream version of the library, retaining the tweaks
 1. If any new `*.c` files appeared in the original library, add them to `gdtoa_SOURCES` in the `CMakeLists.txt`
 
 Now you should be able to simply build the upgraded library as usual, not forgetting to reset `RENAME_FUNCTIONS` option back to `ON`.
+
+NOTE: this procedure totally ignores tests, which may need tweaking of `CMakeLists.txt` and `run-tests.sh` after upgrade.
