@@ -13,6 +13,7 @@ Unlike the `makefile` of the original library, CMake-based build system here ena
 * `USE_LOCALE`, since any glibc-based apps looking for a compatible parsing and formatting of numbers will need it
 * `MULTIPLE_THREADS` + the required locking functions, since the target OSes are multithreaded, and we intend this library to be usable generically.
 * All the externally-visible function names have been prefixed by `gdtoa_` prefix. So, if you wanted to call e.g. `g_xfmt(args...)`, you should instead use `gdtoa_g_xfmt(args...)`.
+* For 32-bit x86 systems SSE2 is used for arithmetic instead of x87 to avoid inconsistent rounding. Then `strtodt` test passes. If you target a CPU without SSE2 support, set the `ENABLE_SSE2` option to `OFF`. In this case the implementation using integer arithmetic will be compiled into the library.
 
 ## Installation
 Simply doing the following commands should be enough to install the library:
