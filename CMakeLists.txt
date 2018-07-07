@@ -6,15 +6,17 @@ set(CXX_STANDARD_REQUIRED 11)
 include_directories("${PROJECT_BINARY_DIR}")
 option(BUILD_SHARED_LIBS "Build shared library instead of static" ON)
 option(USE_LOCALE "Enable support for locale-specific decimal separator" ON)
+option(RENAME_FUNCTIONS "Rename externally-visible functions to avoid conflict with system libraries" ON)
 
 add_definitions(-DMULTIPLE_THREADS)
 if(USE_LOCALE)
     add_definitions(-DUSE_LOCALE)
 endif()
 
+if(RENAME_FUNCTIONS)
 # List of candidates for renaming was obtained via the following command on original library:
-# nm /usr/lib/libgdtoa.so | sed -n 's@.* T \(.*\)@-D\1=gdtoa_\1@p'
-add_definitions(
+# nm libgdtoa.so | sed -n 's@.* T \(.*\)@-D\1=gdtoa_\1@p'
+    add_definitions(
     -Dadd_nanbits_D2A=gdtoa_add_nanbits_D2A
     -Dany_on_D2A=gdtoa_any_on_D2A
     -Db2d_D2A=gdtoa_b2d_D2A
@@ -94,7 +96,8 @@ add_definitions(
     -DULtoQ_D2A=gdtoa_ULtoQ_D2A
     -DULtox_D2A=gdtoa_ULtox_D2A
     -DULtoxL_D2A=gdtoa_ULtoxL_D2A
-)
+    )
+endif()
 
 set(gdtoa_SOURCES
         gdtoa/dmisc.c
@@ -166,13 +169,19 @@ add_custom_command(
 add_library(gdtoa ${gdtoa_SOURCES})
 set_property(TARGET gdtoa PROPERTY CXX_STANDARD 11)
 
-add_custom_command(
-    OUTPUT "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h"
-    COMMAND ${PROJECT_SOURCE_DIR}/rename-functions.sh "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h"
-    DEPENDS "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h"
-    VERBATIM)
-add_custom_target(gdtoa_h ALL DEPENDS "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h")
+if(RENAME_FUNCTIONS)
+    add_custom_command(
+        OUTPUT "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h"
+        COMMAND ${PROJECT_SOURCE_DIR}/rename-functions.sh "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h"
+        DEPENDS "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h"
+        VERBATIM)
+    add_custom_target(gdtoa_h ALL DEPENDS "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h")
+endif()
 
 install(TARGETS gdtoa DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 install(FILES "${PROJECT_BINARY_DIR}/arith.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/")
-install(FILES "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/" RENAME gdtoa.h)
+if(RENAME_FUNCTIONS)
+    install(FILES "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/" RENAME gdtoa.h)
+else()
+    install(FILES "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/")
+endif()

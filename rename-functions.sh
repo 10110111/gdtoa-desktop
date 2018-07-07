@@ -9,7 +9,7 @@ headerIn="$1"
 headerOut="$2"
 
 # List of candidates for renaming was obtained via the following command on original library:
-# nm /usr/lib/libgdtoa.so | sed -n "s#.* T \(.*\)#    -e 's@\\\<\1\\\>@gdtoa_\1@g'\\\#p"
+# nm libgdtoa.so | sed -n "s#.* T \(.*\)#    -e 's@\\\<\1\\\>@gdtoa_\1@g'\\\#p"
 sed \
     -e 's@\<add_nanbits_D2A\>@gdtoa_add_nanbits_D2A@g'\
     -e 's@\<any_on_D2A\>@gdtoa_any_on_D2A@g'\
