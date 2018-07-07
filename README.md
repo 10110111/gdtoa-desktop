@@ -39,9 +39,9 @@ This will run tests from the original library.
 
 NOTE: currently 6 tests fail on my x86 system, I'm not sure whether it's OK yet.
 
-## Upgrading to a newer upstream version
+## Manually upgrading to a newer upstream version
 
-If you need to use a newer upstream version of the library, retaining the tweaks made here, and if this repo lags behind, you can upgrade your local copy manually like follows:
+Generally, it's suggested to try doing `git pull` to see if this repo has already up to date. But if this repo lags behind while you need to use a newer upstream version of the library retaining the tweaks made here, you can upgrade your local copy manually like follows:
 
 1. Remove old `gdtoa/` directory.
 1. Extract the new one in its place.
