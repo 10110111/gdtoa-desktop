@@ -185,3 +185,48 @@ if(RENAME_FUNCTIONS)
 else()
     install(FILES "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/")
 endif()
+
+# Tests
+
+foreach(executable dt dItest ddtest dtest ftest Qtest xLtest xtest strtodt)
+    add_executable(${executable} EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/${executable}.c"
+                                                  "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
+    target_include_directories(${executable} PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+    target_link_libraries(${executable} gdtoa m)
+endforeach()
+
+add_executable(ddtestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/ddtest.c"
+                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtopddSI.c"
+                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtorddSI.c"
+                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtoIddSI.c"
+                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
+target_include_directories(ddtestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+target_link_libraries(ddtestsi gdtoa)
+
+add_executable(dItestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/dItest.c"
+                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodISI.c"
+                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtoIdSI.c"
+                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
+target_include_directories(dItestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+target_link_libraries(dItestsi gdtoa)
+
+add_executable(strtodtnrp EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/strtodnrp.c"
+                                           "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodt.c")
+target_include_directories(strtodtnrp PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+target_link_libraries(strtodtnrp gdtoa)
+
+add_executable(xQtest EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/xQtest.c")
+target_include_directories(xQtest PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+add_custom_command(
+    OUTPUT Q.out x.out xL.out
+    COMMAND cd "${PROJECT_BINARY_DIR}" && ./xQtest | sed "s@cp @cp ${PROJECT_SOURCE_DIR}/gdtoa/test/@g" | sh
+    DEPENDS xQtest
+    VERBATIM)
+add_custom_target(Q_out DEPENDS "${PROJECT_BINARY_DIR}/Q.out")
+add_custom_target(x_out DEPENDS "${PROJECT_BINARY_DIR}/x.out")
+add_custom_target(xL_out DEPENDS "${PROJECT_BINARY_DIR}/xL.out")
+
+add_custom_target(check
+    DEPENDS Q_out x_out xL_out dt dItest ddtest dtest ftest Qtest xLtest xtest ddtestsi dItestsi strtodt strtodtnrp
+    COMMAND "${PROJECT_SOURCE_DIR}/run-tests.sh" "${PROJECT_SOURCE_DIR}/gdtoa/test" "${PROJECT_BINARY_DIR}"
+    VERBATIM)
