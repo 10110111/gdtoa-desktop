@@ -1,5 +1,6 @@
 cmake_minimum_required (VERSION 3.0)
-project (gdtoa C CXX)
+project (gdtoa LANGUAGES C CXX
+               VERSION 0.1.20160506)
 include("GNUInstallDirs")
 set(CXX_STANDARD_REQUIRED 11)
 
@@ -190,8 +191,11 @@ if(RENAME_FUNCTIONS)
     add_custom_target(gdtoa_h ALL DEPENDS "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h")
 endif()
 
+configure_file(gdtoa.pc.cmake "${PROJECT_BINARY_DIR}/gdtoa.pc" @ONLY)
+
 install(TARGETS gdtoa DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 install(FILES "${PROJECT_BINARY_DIR}/arith.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/")
+install(FILES "${PROJECT_BINARY_DIR}/gdtoa.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
 if(RENAME_FUNCTIONS)
     install(FILES "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/" RENAME gdtoa.h)
 else()
