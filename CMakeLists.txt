@@ -1,8 +1,7 @@
 cmake_minimum_required (VERSION 3.0)
-project (gdtoa LANGUAGES C CXX
+project (gdtoa LANGUAGES C
                VERSION 0.1.20160506)
 include("GNUInstallDirs")
-set(CXX_STANDARD_REQUIRED 11)
 
 include_directories("${PROJECT_BINARY_DIR}")
 option(BUILD_SHARED_LIBS "Build shared library instead of static" ON)
@@ -160,7 +159,7 @@ set(gdtoa_SOURCES
 	    gdtoa/strtorxL.c
 	    gdtoa/sum.c
 	    gdtoa/ulp.c
-        lock.cpp
+        lock.c
         "${PROJECT_BINARY_DIR}/arith.h"
         "${PROJECT_BINARY_DIR}/gd_qnan.h"
 )
@@ -180,7 +179,6 @@ add_custom_command(
     VERBATIM)
 
 add_library(gdtoa ${gdtoa_SOURCES})
-set_property(TARGET gdtoa PROPERTY CXX_STANDARD 11)
 
 if(RENAME_FUNCTIONS)
     add_custom_command(
