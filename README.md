@@ -41,7 +41,7 @@ This will run tests from the original library.
 
 ## Manually upgrading to a newer upstream version
 
-Generally, it's suggested to try doing `git pull` to see if this repo has already up to date. But if this repo lags behind while you need to use a newer upstream version of the library retaining the tweaks made here, you can upgrade your local copy manually like follows:
+Generally, it's suggested to try doing `git pull` to see if this repo is already up to date. But if this repo lags behind while you need to use a newer upstream version of the library retaining the tweaks made here, you can upgrade your local copy manually like follows:
 
 1. Remove old `gdtoa/` directory.
 1. Extract the new one in its place.
