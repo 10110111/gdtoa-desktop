@@ -34,12 +34,12 @@ strtoIQ.c	f3272d6f	2013
 strtoId.c	fabd9105	2005
 strtoIdd.c	11248808	2193
 strtoIf.c	16750d29	1949
-strtoIg.c	fd8f01ab	3912
+strtoIg.c	a0bcf2	3720
 strtoIx.c	e7af77b4	2034
 strtoIxL.c	a83e84a	2005
 strtod.c	6a63adb	23026
 strtodI.c	1e8708d3	4018
-strtodg.c	ef82fffa	21906
+strtodg.c	189daf00	21924
 strtodnrp.c	1489d0a1	2552
 strtof.c	efc8e192	2200
 strtopQ.c	e8127161	2729

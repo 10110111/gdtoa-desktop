@@ -103,7 +103,7 @@ main(Void)
 			if (i != i1 || u.d != f1 || se != se1)
 				printf("***strtord and strtopd disagree!!\n");
 			}
-		printf("strtod consumes %d bytes and returns %d with f = %.17g = #%lx %lx\n",
+		printf("strtord consumes %d bytes and returns %d with f = %.17g = #%lx %lx\n",
 				(int)(se-ibuf), i, u.d, UL u.L[_0], UL u.L[_1]);
  fmt_test:
 		se = g_dfmt(obuf, &u.d, ndig, sizeof(obuf));

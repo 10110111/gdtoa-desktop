@@ -62,9 +62,8 @@ strtoIg(CONST char *s00, char **se, CONST FPI *fpi, Long *exp, Bigint **B, int *
 	nw = b->wds;
 	nw1 = nw - 1;
 	if (rv & STRTOG_Inexlo) {
-		swap = rv & STRTOG_Neg;
-		if (!(rv & (STRTOG_Underflow | STRTOG_Overflow)) || !b->x[0])
-			b1 = increment(b1 MTb);
+		swap = 0;
+		b1 = increment(b1 MTb);
 		if ((rv & STRTOG_Retmask) == STRTOG_Zero) {
 			if (fpi->sudden_underflow) {
 				b1->x[0] = 0;
@@ -91,16 +90,14 @@ strtoIg(CONST char *s00, char **se, CONST FPI *fpi, Long *exp, Bigint **B, int *
 			}
 		}
 	else {
-		swap = !(rv & STRTOG_Neg);
+		swap = STRTOG_Neg;
 		if ((rv & STRTOG_Retmask) == STRTOG_Infinite) {
 			b1 = set_ones(b1, nb MTb);
 			e1 = fpi->emax;
-			rv1 = STRTOG_Normal | STRTOG_Inexhi | (rv & STRTOG_Neg);
-			rv ^= STRTOG_Inexact;
+			rv1 = STRTOG_Normal | STRTOG_Inexlo | (rv & STRTOG_Neg);
 			goto swapcheck;
 			}
-		if (!(rv & (STRTOG_Underflow | STRTOG_Overflow)))
-			decrement(b1);
+		decrement(b1);
 		if ((rv & STRTOG_Retmask) == STRTOG_Denormal) {
 			for(i = nw1; !b1->x[i]; --i)
 				if (!i) {
@@ -125,9 +122,9 @@ strtoIg(CONST char *s00, char **se, CONST FPI *fpi, Long *exp, Bigint **B, int *
 			}
 		}
  swapcheck:
-	if (swap) {
-		rvp[0] = rv1 ^ STRTOG_Inexact;
-		rvp[1] = rv  ^ STRTOG_Inexact;
+	if (swap ^ (rv & STRTOG_Neg)) {
+		rvp[0] = rv1;
+		rvp[1] = rv;
 		B[0] = b1;
 		B[1] = b;
 		exp[1] = exp[0];
@@ -136,7 +133,6 @@ strtoIg(CONST char *s00, char **se, CONST FPI *fpi, Long *exp, Bigint **B, int *
 	else {
 		rvp[0] = rv;
 		rvp[1] = rv1;
-		B[0] = b;
 		B[1] = b1;
 		exp[1] = e1;
 		}

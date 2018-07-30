@@ -1,6 +1,6 @@
 
 Input: 1.23
-strtod consumes 4 bytes and returns 17 with f = 1.23 = #3ff3ae14 7ae147ae
+strtord consumes 4 bytes and returns 17 with f = 1.23 = #3ff3ae14 7ae147ae
 g_dfmt(0) gives 4 bytes: "1.23"
 
 strtoId returns 17, consuming 4 bytes.
@@ -10,7 +10,7 @@ fI[0] == strtod
 
 
 Input: 1.23e+20
-strtod consumes 8 bytes and returns 1 with f = 1.23e+20 = #441aabdf 2145b430
+strtord consumes 8 bytes and returns 1 with f = 1.23e+20 = #441aabdf 2145b430
 g_dfmt(0) gives 8 bytes: "1.23e+20"
 
 strtoId returns 1, consuming 8 bytes.
@@ -18,7 +18,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: 1.23e-20
-strtod consumes 8 bytes and returns 33 with f = 1.2300000000000001e-20 = #3bcd0ae4 cf767531
+strtord consumes 8 bytes and returns 33 with f = 1.2300000000000001e-20 = #3bcd0ae4 cf767531
 g_dfmt(0) gives 8 bytes: "1.23e-20"
 
 strtoId returns 33, consuming 8 bytes.
@@ -28,7 +28,7 @@ fI[1] == strtod
 
 
 Input: 1.23456789
-strtod consumes 10 bytes and returns 17 with f = 1.2345678899999999 = #3ff3c0ca 4283de1b
+strtord consumes 10 bytes and returns 17 with f = 1.2345678899999999 = #3ff3c0ca 4283de1b
 g_dfmt(0) gives 10 bytes: "1.23456789"
 
 strtoId returns 17, consuming 10 bytes.
@@ -38,7 +38,7 @@ fI[0] == strtod
 
 
 Input: 1.23456589e+20
-strtod consumes 14 bytes and returns 17 with f = 1.23456589e+20 = #441ac537 a660b997
+strtord consumes 14 bytes and returns 17 with f = 1.23456589e+20 = #441ac537 a660b997
 g_dfmt(0) gives 14 bytes: "1.23456589e+20"
 
 strtoId returns 17, consuming 14 bytes.
@@ -48,7 +48,7 @@ fI[0] == strtod
 
 
 Input: 1.23e+30
-strtod consumes 8 bytes and returns 17 with f = 1.23e+30 = #462f0cb0 4e8fb790
+strtord consumes 8 bytes and returns 17 with f = 1.23e+30 = #462f0cb0 4e8fb790
 g_dfmt(0) gives 8 bytes: "1.23e+30"
 
 strtoId returns 17, consuming 8 bytes.
@@ -58,7 +58,7 @@ fI[0] == strtod
 
 
 Input: 1.23e-30
-strtod consumes 8 bytes and returns 33 with f = 1.2300000000000001e-30 = #39b8f286 6f5010ab
+strtord consumes 8 bytes and returns 33 with f = 1.2300000000000001e-30 = #39b8f286 6f5010ab
 g_dfmt(0) gives 8 bytes: "1.23e-30"
 
 strtoId returns 33, consuming 8 bytes.
@@ -68,7 +68,7 @@ fI[1] == strtod
 
 
 Input: 1.23456789e-20
-strtod consumes 14 bytes and returns 17 with f = 1.2345678899999999e-20 = #3bcd2681 471e7ada
+strtord consumes 14 bytes and returns 17 with f = 1.2345678899999999e-20 = #3bcd2681 471e7ada
 g_dfmt(0) gives 14 bytes: "1.23456789e-20"
 
 strtoId returns 17, consuming 14 bytes.
@@ -78,7 +78,7 @@ fI[0] == strtod
 
 
 Input: 1.23456789e-30
-strtod consumes 14 bytes and returns 17 with f = 1.23456789e-30 = #39b90a3e 33bbd995
+strtord consumes 14 bytes and returns 17 with f = 1.23456789e-30 = #39b90a3e 33bbd995
 g_dfmt(0) gives 14 bytes: "1.23456789e-30"
 
 strtoId returns 17, consuming 14 bytes.
@@ -88,7 +88,7 @@ fI[0] == strtod
 
 
 Input: 1.234567890123456789
-strtod consumes 20 bytes and returns 17 with f = 1.2345678901234567 = #3ff3c0ca 428c59fb
+strtord consumes 20 bytes and returns 17 with f = 1.2345678901234567 = #3ff3c0ca 428c59fb
 g_dfmt(0) gives 18 bytes: "1.2345678901234567"
 
 strtoId returns 17, consuming 20 bytes.
@@ -98,7 +98,7 @@ fI[0] == strtod
 
 
 Input: 1.23456789012345678901234567890123456789
-strtod consumes 40 bytes and returns 17 with f = 1.2345678901234567 = #3ff3c0ca 428c59fb
+strtord consumes 40 bytes and returns 17 with f = 1.2345678901234567 = #3ff3c0ca 428c59fb
 g_dfmt(0) gives 18 bytes: "1.2345678901234567"
 
 strtoId returns 17, consuming 40 bytes.
@@ -108,7 +108,7 @@ fI[0] == strtod
 
 
 Input: 1.23e306
-strtod consumes 8 bytes and returns 33 with f = 1.23e+306 = #7f7c0676 cd1c61f5
+strtord consumes 8 bytes and returns 33 with f = 1.23e+306 = #7f7c0676 cd1c61f5
 g_dfmt(0) gives 9 bytes: "1.23e+306"
 
 strtoId returns 33, consuming 8 bytes.
@@ -118,7 +118,7 @@ fI[1] == strtod
 
 
 Input: 1.23e-306
-strtod consumes 9 bytes and returns 33 with f = 1.23e-306 = #6ba3b8 5da396e8
+strtord consumes 9 bytes and returns 33 with f = 1.23e-306 = #6ba3b8 5da396e8
 g_dfmt(0) gives 9 bytes: "1.23e-306"
 
 strtoId returns 33, consuming 9 bytes.
@@ -128,7 +128,7 @@ fI[1] == strtod
 
 
 Input: 1.23e-320
-strtod consumes 9 bytes and returns 98 with f = 1.2302234581447039e-320 = #0 9ba
+strtord consumes 9 bytes and returns 98 with f = 1.2302234581447039e-320 = #0 9ba
 g_dfmt(0) gives 9 bytes: "1.23e-320"
 
 strtoId returns 98, consuming 9 bytes.
@@ -138,7 +138,7 @@ fI[1] == strtod
 
 
 Input: 1.23e-20
-strtod consumes 8 bytes and returns 33 with f = 1.2300000000000001e-20 = #3bcd0ae4 cf767531
+strtord consumes 8 bytes and returns 33 with f = 1.2300000000000001e-20 = #3bcd0ae4 cf767531
 g_dfmt(0) gives 8 bytes: "1.23e-20"
 
 strtoId returns 33, consuming 8 bytes.
@@ -148,7 +148,7 @@ fI[1] == strtod
 
 
 Input: 1.23456789e307
-strtod consumes 14 bytes and returns 33 with f = 1.23456789e+307 = #7fb194b1 4bdaecdc
+strtord consumes 14 bytes and returns 33 with f = 1.23456789e+307 = #7fb194b1 4bdaecdc
 g_dfmt(0) gives 15 bytes: "1.23456789e+307"
 
 strtoId returns 33, consuming 14 bytes.
@@ -158,7 +158,7 @@ fI[1] == strtod
 
 
 Input: 1.23456589e-307
-strtod consumes 15 bytes and returns 17 with f = 1.2345658899999999e-307 = #363196 bb9845fa
+strtord consumes 15 bytes and returns 17 with f = 1.2345658899999999e-307 = #363196 bb9845fa
 g_dfmt(0) gives 15 bytes: "1.23456589e-307"
 
 strtoId returns 17, consuming 15 bytes.
@@ -168,7 +168,7 @@ fI[0] == strtod
 
 
 Input: 1.234567890123456789
-strtod consumes 20 bytes and returns 17 with f = 1.2345678901234567 = #3ff3c0ca 428c59fb
+strtord consumes 20 bytes and returns 17 with f = 1.2345678901234567 = #3ff3c0ca 428c59fb
 g_dfmt(0) gives 18 bytes: "1.2345678901234567"
 
 strtoId returns 17, consuming 20 bytes.
@@ -178,7 +178,7 @@ fI[0] == strtod
 
 
 Input: 1.234567890123456789e301
-strtod consumes 24 bytes and returns 17 with f = 1.2345678901234568e+301 = #7e726f51 75f56413
+strtord consumes 24 bytes and returns 17 with f = 1.2345678901234568e+301 = #7e726f51 75f56413
 g_dfmt(0) gives 23 bytes: "1.2345678901234568e+301"
 
 strtoId returns 17, consuming 24 bytes.
@@ -188,7 +188,7 @@ fI[0] == strtod
 
 
 Input: 1.234567890123456789e-301
-strtod consumes 25 bytes and returns 17 with f = 1.2345678901234567e-301 = #1752a64 e34ba0d3
+strtord consumes 25 bytes and returns 17 with f = 1.2345678901234567e-301 = #1752a64 e34ba0d3
 g_dfmt(0) gives 23 bytes: "1.2345678901234567e-301"
 
 strtoId returns 17, consuming 25 bytes.
@@ -198,7 +198,7 @@ fI[0] == strtod
 
 
 Input: 1.234567890123456789e-321
-strtod consumes 25 bytes and returns 98 with f = 1.2351641146031164e-321 = #0 fa
+strtord consumes 25 bytes and returns 98 with f = 1.2351641146031164e-321 = #0 fa
 g_dfmt(0) gives 10 bytes: "1.235e-321"
 
 strtoId returns 98, consuming 25 bytes.
@@ -208,7 +208,7 @@ fI[1] == strtod
 
 
 Input: 1e23
-strtod consumes 4 bytes and returns 17 with f = 9.9999999999999992e+22 = #44b52d02 c7e14af6
+strtord consumes 4 bytes and returns 17 with f = 9.9999999999999992e+22 = #44b52d02 c7e14af6
 g_dfmt(0) gives 5 bytes: "1e+23"
 
 strtoId returns 17, consuming 4 bytes.
@@ -218,7 +218,7 @@ fI[0] == strtod
 
 
 Input: 1e310
-strtod consumes 5 bytes and returns 163 with f = Infinity = #7ff00000 0
+strtord consumes 5 bytes and returns 163 with f = Infinity = #7ff00000 0
 g_dfmt(0) gives 8 bytes: "Infinity"
 
 strtoId returns 163, consuming 5 bytes.
@@ -234,7 +234,7 @@ g_dfmt_p(...,4): "Infinity"
 g_dfmt_p(...,5): "Infinity"
 
 Input: 9.0259718793241475e-277
-strtod consumes 23 bytes and returns 33 with f = 9.0259718793241479e-277 = #6a00000 0
+strtord consumes 23 bytes and returns 33 with f = 9.0259718793241479e-277 = #6a00000 0
 g_dfmt(0) gives 22 bytes: "9.025971879324148e-277"
 
 strtoId returns 33, consuming 23 bytes.
@@ -244,7 +244,7 @@ fI[1] == strtod
 
 
 Input: 9.025971879324147880346310405869e-277
-strtod consumes 37 bytes and returns 17 with f = 9.0259718793241479e-277 = #6a00000 0
+strtord consumes 37 bytes and returns 17 with f = 9.0259718793241479e-277 = #6a00000 0
 g_dfmt(0) gives 22 bytes: "9.025971879324148e-277"
 
 strtoId returns 17, consuming 37 bytes.
@@ -254,7 +254,7 @@ fI[0] == strtod
 
 
 Input: 9.025971879324147880346310405868e-277
-strtod consumes 37 bytes and returns 33 with f = 9.0259718793241479e-277 = #6a00000 0
+strtord consumes 37 bytes and returns 33 with f = 9.0259718793241479e-277 = #6a00000 0
 g_dfmt(0) gives 22 bytes: "9.025971879324148e-277"
 
 strtoId returns 33, consuming 37 bytes.
@@ -264,7 +264,7 @@ fI[1] == strtod
 
 
 Input: 2.2250738585072014e-308
-strtod consumes 23 bytes and returns 17 with f = 2.2250738585072014e-308 = #100000 0
+strtord consumes 23 bytes and returns 17 with f = 2.2250738585072014e-308 = #100000 0
 g_dfmt(0) gives 23 bytes: "2.2250738585072014e-308"
 
 strtoId returns 17, consuming 23 bytes.
@@ -274,7 +274,7 @@ fI[0] == strtod
 
 
 Input: 2.2250738585072013e-308
-strtod consumes 23 bytes and returns 33 with f = 2.2250738585072014e-308 = #100000 0
+strtord consumes 23 bytes and returns 33 with f = 2.2250738585072014e-308 = #100000 0
 g_dfmt(0) gives 23 bytes: "2.2250738585072014e-308"
 
 strtoId returns 33, consuming 23 bytes.
@@ -284,7 +284,7 @@ fI[1] == strtod
 
 
 Input: 3.2649476e14
-strtod consumes 12 bytes and returns 1 with f = 326494760000000 = #42f28f1f c30da000
+strtord consumes 12 bytes and returns 1 with f = 326494760000000 = #42f28f1f c30da000
 g_dfmt(0) gives 13 bytes: "3.2649476e+14"
 
 strtoId returns 1, consuming 12 bytes.
@@ -293,7 +293,7 @@ fI[0] == fI[1] == strtod
 Rounding mode for strtor... changed from 1 (nearest) to 0 (toward zero)
 
 Input: 1.1
-strtod consumes 3 bytes and returns 17 with f = 1.0999999999999999 = #3ff19999 99999999
+strtord consumes 3 bytes and returns 17 with f = 1.0999999999999999 = #3ff19999 99999999
 g_dfmt(0) gives 18 bytes: "1.0999999999999999"
 
 strtoId returns 33, consuming 3 bytes.
@@ -303,7 +303,7 @@ fI[0] == strtod
 
 
 Input: -1.1
-strtod consumes 4 bytes and returns 25 with f = -1.0999999999999999 = #bff19999 99999999
+strtord consumes 4 bytes and returns 25 with f = -1.0999999999999999 = #bff19999 99999999
 g_dfmt(0) gives 19 bytes: "-1.0999999999999999"
 
 strtoId returns 41, consuming 4 bytes.
@@ -313,7 +313,7 @@ fI[1] == strtod
 
 
 Input: 1.2
-strtod consumes 3 bytes and returns 17 with f = 1.2 = #3ff33333 33333333
+strtord consumes 3 bytes and returns 17 with f = 1.2 = #3ff33333 33333333
 g_dfmt(0) gives 3 bytes: "1.2"
 
 strtoId returns 17, consuming 3 bytes.
@@ -323,7 +323,7 @@ fI[0] == strtod
 
 
 Input: -1.2
-strtod consumes 4 bytes and returns 25 with f = -1.2 = #bff33333 33333333
+strtord consumes 4 bytes and returns 25 with f = -1.2 = #bff33333 33333333
 g_dfmt(0) gives 4 bytes: "-1.2"
 
 strtoId returns 25, consuming 4 bytes.
@@ -333,7 +333,7 @@ fI[1] == strtod
 
 
 Input: 1.3
-strtod consumes 3 bytes and returns 17 with f = 1.2999999999999998 = #3ff4cccc cccccccc
+strtord consumes 3 bytes and returns 17 with f = 1.2999999999999998 = #3ff4cccc cccccccc
 g_dfmt(0) gives 18 bytes: "1.2999999999999998"
 
 strtoId returns 33, consuming 3 bytes.
@@ -343,7 +343,7 @@ fI[0] == strtod
 
 
 Input: -1.3
-strtod consumes 4 bytes and returns 25 with f = -1.2999999999999998 = #bff4cccc cccccccc
+strtord consumes 4 bytes and returns 25 with f = -1.2999999999999998 = #bff4cccc cccccccc
 g_dfmt(0) gives 19 bytes: "-1.2999999999999998"
 
 strtoId returns 41, consuming 4 bytes.
@@ -353,7 +353,7 @@ fI[1] == strtod
 
 
 Input: 1.4
-strtod consumes 3 bytes and returns 17 with f = 1.3999999999999999 = #3ff66666 66666666
+strtord consumes 3 bytes and returns 17 with f = 1.3999999999999999 = #3ff66666 66666666
 g_dfmt(0) gives 3 bytes: "1.4"
 
 strtoId returns 17, consuming 3 bytes.
@@ -363,7 +363,7 @@ fI[0] == strtod
 
 
 Input: -1.4
-strtod consumes 4 bytes and returns 25 with f = -1.3999999999999999 = #bff66666 66666666
+strtord consumes 4 bytes and returns 25 with f = -1.3999999999999999 = #bff66666 66666666
 g_dfmt(0) gives 4 bytes: "-1.4"
 
 strtoId returns 25, consuming 4 bytes.
@@ -373,7 +373,7 @@ fI[1] == strtod
 
 
 Input: 1.5
-strtod consumes 3 bytes and returns 1 with f = 1.5 = #3ff80000 0
+strtord consumes 3 bytes and returns 1 with f = 1.5 = #3ff80000 0
 g_dfmt(0) gives 3 bytes: "1.5"
 
 strtoId returns 1, consuming 3 bytes.
@@ -381,7 +381,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: -1.5
-strtod consumes 4 bytes and returns 9 with f = -1.5 = #bff80000 0
+strtord consumes 4 bytes and returns 9 with f = -1.5 = #bff80000 0
 g_dfmt(0) gives 4 bytes: "-1.5"
 
 strtoId returns 9, consuming 4 bytes.
@@ -389,7 +389,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: 1.6
-strtod consumes 3 bytes and returns 17 with f = 1.5999999999999999 = #3ff99999 99999999
+strtord consumes 3 bytes and returns 17 with f = 1.5999999999999999 = #3ff99999 99999999
 g_dfmt(0) gives 18 bytes: "1.5999999999999999"
 
 strtoId returns 33, consuming 3 bytes.
@@ -399,7 +399,7 @@ fI[0] == strtod
 
 
 Input: -1.6
-strtod consumes 4 bytes and returns 25 with f = -1.5999999999999999 = #bff99999 99999999
+strtord consumes 4 bytes and returns 25 with f = -1.5999999999999999 = #bff99999 99999999
 g_dfmt(0) gives 19 bytes: "-1.5999999999999999"
 
 strtoId returns 41, consuming 4 bytes.
@@ -409,7 +409,7 @@ fI[1] == strtod
 
 
 Input: 1.7
-strtod consumes 3 bytes and returns 17 with f = 1.7 = #3ffb3333 33333333
+strtord consumes 3 bytes and returns 17 with f = 1.7 = #3ffb3333 33333333
 g_dfmt(0) gives 3 bytes: "1.7"
 
 strtoId returns 17, consuming 3 bytes.
@@ -419,7 +419,7 @@ fI[0] == strtod
 
 
 Input: -1.7
-strtod consumes 4 bytes and returns 25 with f = -1.7 = #bffb3333 33333333
+strtord consumes 4 bytes and returns 25 with f = -1.7 = #bffb3333 33333333
 g_dfmt(0) gives 4 bytes: "-1.7"
 
 strtoId returns 25, consuming 4 bytes.
@@ -429,7 +429,7 @@ fI[1] == strtod
 
 
 Input: 1.8
-strtod consumes 3 bytes and returns 17 with f = 1.7999999999999998 = #3ffccccc cccccccc
+strtord consumes 3 bytes and returns 17 with f = 1.7999999999999998 = #3ffccccc cccccccc
 g_dfmt(0) gives 18 bytes: "1.7999999999999998"
 
 strtoId returns 33, consuming 3 bytes.
@@ -439,7 +439,7 @@ fI[0] == strtod
 
 
 Input: -1.8
-strtod consumes 4 bytes and returns 25 with f = -1.7999999999999998 = #bffccccc cccccccc
+strtord consumes 4 bytes and returns 25 with f = -1.7999999999999998 = #bffccccc cccccccc
 g_dfmt(0) gives 19 bytes: "-1.7999999999999998"
 
 strtoId returns 41, consuming 4 bytes.
@@ -449,7 +449,7 @@ fI[1] == strtod
 
 
 Input: 1.9
-strtod consumes 3 bytes and returns 17 with f = 1.8999999999999999 = #3ffe6666 66666666
+strtord consumes 3 bytes and returns 17 with f = 1.8999999999999999 = #3ffe6666 66666666
 g_dfmt(0) gives 3 bytes: "1.9"
 
 strtoId returns 17, consuming 3 bytes.
@@ -459,7 +459,7 @@ fI[0] == strtod
 
 
 Input: -1.9
-strtod consumes 4 bytes and returns 25 with f = -1.8999999999999999 = #bffe6666 66666666
+strtord consumes 4 bytes and returns 25 with f = -1.8999999999999999 = #bffe6666 66666666
 g_dfmt(0) gives 4 bytes: "-1.9"
 
 strtoId returns 25, consuming 4 bytes.
@@ -470,7 +470,7 @@ fI[1] == strtod
 Rounding mode for strtor... changed from 0 (toward zero) to 1 (nearest)
 
 Input: 1.1
-strtod consumes 3 bytes and returns 33 with f = 1.1000000000000001 = #3ff19999 9999999a
+strtord consumes 3 bytes and returns 33 with f = 1.1000000000000001 = #3ff19999 9999999a
 g_dfmt(0) gives 3 bytes: "1.1"
 
 strtoId returns 33, consuming 3 bytes.
@@ -480,7 +480,7 @@ fI[1] == strtod
 
 
 Input: -1.1
-strtod consumes 4 bytes and returns 41 with f = -1.1000000000000001 = #bff19999 9999999a
+strtord consumes 4 bytes and returns 41 with f = -1.1000000000000001 = #bff19999 9999999a
 g_dfmt(0) gives 4 bytes: "-1.1"
 
 strtoId returns 41, consuming 4 bytes.
@@ -490,7 +490,7 @@ fI[0] == strtod
 
 
 Input: 1.2
-strtod consumes 3 bytes and returns 17 with f = 1.2 = #3ff33333 33333333
+strtord consumes 3 bytes and returns 17 with f = 1.2 = #3ff33333 33333333
 g_dfmt(0) gives 3 bytes: "1.2"
 
 strtoId returns 17, consuming 3 bytes.
@@ -500,7 +500,7 @@ fI[0] == strtod
 
 
 Input: -1.2
-strtod consumes 4 bytes and returns 25 with f = -1.2 = #bff33333 33333333
+strtord consumes 4 bytes and returns 25 with f = -1.2 = #bff33333 33333333
 g_dfmt(0) gives 4 bytes: "-1.2"
 
 strtoId returns 25, consuming 4 bytes.
@@ -510,7 +510,7 @@ fI[1] == strtod
 
 
 Input: 1.3
-strtod consumes 3 bytes and returns 33 with f = 1.3 = #3ff4cccc cccccccd
+strtord consumes 3 bytes and returns 33 with f = 1.3 = #3ff4cccc cccccccd
 g_dfmt(0) gives 3 bytes: "1.3"
 
 strtoId returns 33, consuming 3 bytes.
@@ -520,7 +520,7 @@ fI[1] == strtod
 
 
 Input: -1.3
-strtod consumes 4 bytes and returns 41 with f = -1.3 = #bff4cccc cccccccd
+strtord consumes 4 bytes and returns 41 with f = -1.3 = #bff4cccc cccccccd
 g_dfmt(0) gives 4 bytes: "-1.3"
 
 strtoId returns 41, consuming 4 bytes.
@@ -530,7 +530,7 @@ fI[0] == strtod
 
 
 Input: 1.4
-strtod consumes 3 bytes and returns 17 with f = 1.3999999999999999 = #3ff66666 66666666
+strtord consumes 3 bytes and returns 17 with f = 1.3999999999999999 = #3ff66666 66666666
 g_dfmt(0) gives 3 bytes: "1.4"
 
 strtoId returns 17, consuming 3 bytes.
@@ -540,7 +540,7 @@ fI[0] == strtod
 
 
 Input: -1.4
-strtod consumes 4 bytes and returns 25 with f = -1.3999999999999999 = #bff66666 66666666
+strtord consumes 4 bytes and returns 25 with f = -1.3999999999999999 = #bff66666 66666666
 g_dfmt(0) gives 4 bytes: "-1.4"
 
 strtoId returns 25, consuming 4 bytes.
@@ -550,7 +550,7 @@ fI[1] == strtod
 
 
 Input: 1.5
-strtod consumes 3 bytes and returns 1 with f = 1.5 = #3ff80000 0
+strtord consumes 3 bytes and returns 1 with f = 1.5 = #3ff80000 0
 g_dfmt(0) gives 3 bytes: "1.5"
 
 strtoId returns 1, consuming 3 bytes.
@@ -558,7 +558,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: -1.5
-strtod consumes 4 bytes and returns 9 with f = -1.5 = #bff80000 0
+strtord consumes 4 bytes and returns 9 with f = -1.5 = #bff80000 0
 g_dfmt(0) gives 4 bytes: "-1.5"
 
 strtoId returns 9, consuming 4 bytes.
@@ -566,7 +566,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: 1.6
-strtod consumes 3 bytes and returns 33 with f = 1.6000000000000001 = #3ff99999 9999999a
+strtord consumes 3 bytes and returns 33 with f = 1.6000000000000001 = #3ff99999 9999999a
 g_dfmt(0) gives 3 bytes: "1.6"
 
 strtoId returns 33, consuming 3 bytes.
@@ -576,7 +576,7 @@ fI[1] == strtod
 
 
 Input: -1.6
-strtod consumes 4 bytes and returns 41 with f = -1.6000000000000001 = #bff99999 9999999a
+strtord consumes 4 bytes and returns 41 with f = -1.6000000000000001 = #bff99999 9999999a
 g_dfmt(0) gives 4 bytes: "-1.6"
 
 strtoId returns 41, consuming 4 bytes.
@@ -586,7 +586,7 @@ fI[0] == strtod
 
 
 Input: 1.7
-strtod consumes 3 bytes and returns 17 with f = 1.7 = #3ffb3333 33333333
+strtord consumes 3 bytes and returns 17 with f = 1.7 = #3ffb3333 33333333
 g_dfmt(0) gives 3 bytes: "1.7"
 
 strtoId returns 17, consuming 3 bytes.
@@ -596,7 +596,7 @@ fI[0] == strtod
 
 
 Input: -1.7
-strtod consumes 4 bytes and returns 25 with f = -1.7 = #bffb3333 33333333
+strtord consumes 4 bytes and returns 25 with f = -1.7 = #bffb3333 33333333
 g_dfmt(0) gives 4 bytes: "-1.7"
 
 strtoId returns 25, consuming 4 bytes.
@@ -606,7 +606,7 @@ fI[1] == strtod
 
 
 Input: 1.8
-strtod consumes 3 bytes and returns 33 with f = 1.8 = #3ffccccc cccccccd
+strtord consumes 3 bytes and returns 33 with f = 1.8 = #3ffccccc cccccccd
 g_dfmt(0) gives 3 bytes: "1.8"
 
 strtoId returns 33, consuming 3 bytes.
@@ -616,7 +616,7 @@ fI[1] == strtod
 
 
 Input: -1.8
-strtod consumes 4 bytes and returns 41 with f = -1.8 = #bffccccc cccccccd
+strtord consumes 4 bytes and returns 41 with f = -1.8 = #bffccccc cccccccd
 g_dfmt(0) gives 4 bytes: "-1.8"
 
 strtoId returns 41, consuming 4 bytes.
@@ -626,7 +626,7 @@ fI[0] == strtod
 
 
 Input: 1.9
-strtod consumes 3 bytes and returns 17 with f = 1.8999999999999999 = #3ffe6666 66666666
+strtord consumes 3 bytes and returns 17 with f = 1.8999999999999999 = #3ffe6666 66666666
 g_dfmt(0) gives 3 bytes: "1.9"
 
 strtoId returns 17, consuming 3 bytes.
@@ -636,7 +636,7 @@ fI[0] == strtod
 
 
 Input: -1.9
-strtod consumes 4 bytes and returns 25 with f = -1.8999999999999999 = #bffe6666 66666666
+strtord consumes 4 bytes and returns 25 with f = -1.8999999999999999 = #bffe6666 66666666
 g_dfmt(0) gives 4 bytes: "-1.9"
 
 strtoId returns 25, consuming 4 bytes.
@@ -647,7 +647,7 @@ fI[1] == strtod
 Rounding mode for strtor... changed from 1 (nearest) to 2 (toward +Infinity)
 
 Input: 1.1
-strtod consumes 3 bytes and returns 33 with f = 1.1000000000000001 = #3ff19999 9999999a
+strtord consumes 3 bytes and returns 33 with f = 1.1000000000000001 = #3ff19999 9999999a
 g_dfmt(0) gives 3 bytes: "1.1"
 
 strtoId returns 33, consuming 3 bytes.
@@ -657,7 +657,7 @@ fI[1] == strtod
 
 
 Input: -1.1
-strtod consumes 4 bytes and returns 25 with f = -1.0999999999999999 = #bff19999 99999999
+strtord consumes 4 bytes and returns 25 with f = -1.0999999999999999 = #bff19999 99999999
 g_dfmt(0) gives 19 bytes: "-1.0999999999999999"
 
 strtoId returns 41, consuming 4 bytes.
@@ -667,7 +667,7 @@ fI[1] == strtod
 
 
 Input: 1.2
-strtod consumes 3 bytes and returns 33 with f = 1.2000000000000002 = #3ff33333 33333334
+strtord consumes 3 bytes and returns 33 with f = 1.2000000000000002 = #3ff33333 33333334
 g_dfmt(0) gives 18 bytes: "1.2000000000000002"
 
 strtoId returns 17, consuming 3 bytes.
@@ -677,7 +677,7 @@ fI[1] == strtod
 
 
 Input: -1.2
-strtod consumes 4 bytes and returns 25 with f = -1.2 = #bff33333 33333333
+strtord consumes 4 bytes and returns 25 with f = -1.2 = #bff33333 33333333
 g_dfmt(0) gives 4 bytes: "-1.2"
 
 strtoId returns 25, consuming 4 bytes.
@@ -687,7 +687,7 @@ fI[1] == strtod
 
 
 Input: 1.3
-strtod consumes 3 bytes and returns 33 with f = 1.3 = #3ff4cccc cccccccd
+strtord consumes 3 bytes and returns 33 with f = 1.3 = #3ff4cccc cccccccd
 g_dfmt(0) gives 3 bytes: "1.3"
 
 strtoId returns 33, consuming 3 bytes.
@@ -697,7 +697,7 @@ fI[1] == strtod
 
 
 Input: -1.3
-strtod consumes 4 bytes and returns 25 with f = -1.2999999999999998 = #bff4cccc cccccccc
+strtord consumes 4 bytes and returns 25 with f = -1.2999999999999998 = #bff4cccc cccccccc
 g_dfmt(0) gives 19 bytes: "-1.2999999999999998"
 
 strtoId returns 41, consuming 4 bytes.
@@ -707,7 +707,7 @@ fI[1] == strtod
 
 
 Input: 1.4
-strtod consumes 3 bytes and returns 33 with f = 1.4000000000000001 = #3ff66666 66666667
+strtord consumes 3 bytes and returns 33 with f = 1.4000000000000001 = #3ff66666 66666667
 g_dfmt(0) gives 18 bytes: "1.4000000000000001"
 
 strtoId returns 17, consuming 3 bytes.
@@ -717,7 +717,7 @@ fI[1] == strtod
 
 
 Input: -1.4
-strtod consumes 4 bytes and returns 25 with f = -1.3999999999999999 = #bff66666 66666666
+strtord consumes 4 bytes and returns 25 with f = -1.3999999999999999 = #bff66666 66666666
 g_dfmt(0) gives 4 bytes: "-1.4"
 
 strtoId returns 25, consuming 4 bytes.
@@ -727,7 +727,7 @@ fI[1] == strtod
 
 
 Input: 1.5
-strtod consumes 3 bytes and returns 1 with f = 1.5 = #3ff80000 0
+strtord consumes 3 bytes and returns 1 with f = 1.5 = #3ff80000 0
 g_dfmt(0) gives 3 bytes: "1.5"
 
 strtoId returns 1, consuming 3 bytes.
@@ -735,7 +735,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: -1.5
-strtod consumes 4 bytes and returns 9 with f = -1.5 = #bff80000 0
+strtord consumes 4 bytes and returns 9 with f = -1.5 = #bff80000 0
 g_dfmt(0) gives 4 bytes: "-1.5"
 
 strtoId returns 9, consuming 4 bytes.
@@ -743,7 +743,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: 1.6
-strtod consumes 3 bytes and returns 33 with f = 1.6000000000000001 = #3ff99999 9999999a
+strtord consumes 3 bytes and returns 33 with f = 1.6000000000000001 = #3ff99999 9999999a
 g_dfmt(0) gives 3 bytes: "1.6"
 
 strtoId returns 33, consuming 3 bytes.
@@ -753,7 +753,7 @@ fI[1] == strtod
 
 
 Input: -1.6
-strtod consumes 4 bytes and returns 25 with f = -1.5999999999999999 = #bff99999 99999999
+strtord consumes 4 bytes and returns 25 with f = -1.5999999999999999 = #bff99999 99999999
 g_dfmt(0) gives 19 bytes: "-1.5999999999999999"
 
 strtoId returns 41, consuming 4 bytes.
@@ -763,7 +763,7 @@ fI[1] == strtod
 
 
 Input: 1.7
-strtod consumes 3 bytes and returns 33 with f = 1.7000000000000002 = #3ffb3333 33333334
+strtord consumes 3 bytes and returns 33 with f = 1.7000000000000002 = #3ffb3333 33333334
 g_dfmt(0) gives 18 bytes: "1.7000000000000002"
 
 strtoId returns 17, consuming 3 bytes.
@@ -773,7 +773,7 @@ fI[1] == strtod
 
 
 Input: -1.7
-strtod consumes 4 bytes and returns 25 with f = -1.7 = #bffb3333 33333333
+strtord consumes 4 bytes and returns 25 with f = -1.7 = #bffb3333 33333333
 g_dfmt(0) gives 4 bytes: "-1.7"
 
 strtoId returns 25, consuming 4 bytes.
@@ -783,7 +783,7 @@ fI[1] == strtod
 
 
 Input: 1.8
-strtod consumes 3 bytes and returns 33 with f = 1.8 = #3ffccccc cccccccd
+strtord consumes 3 bytes and returns 33 with f = 1.8 = #3ffccccc cccccccd
 g_dfmt(0) gives 3 bytes: "1.8"
 
 strtoId returns 33, consuming 3 bytes.
@@ -793,7 +793,7 @@ fI[1] == strtod
 
 
 Input: -1.8
-strtod consumes 4 bytes and returns 25 with f = -1.7999999999999998 = #bffccccc cccccccc
+strtord consumes 4 bytes and returns 25 with f = -1.7999999999999998 = #bffccccc cccccccc
 g_dfmt(0) gives 19 bytes: "-1.7999999999999998"
 
 strtoId returns 41, consuming 4 bytes.
@@ -803,7 +803,7 @@ fI[1] == strtod
 
 
 Input: 1.9
-strtod consumes 3 bytes and returns 33 with f = 1.9000000000000001 = #3ffe6666 66666667
+strtord consumes 3 bytes and returns 33 with f = 1.9000000000000001 = #3ffe6666 66666667
 g_dfmt(0) gives 18 bytes: "1.9000000000000001"
 
 strtoId returns 17, consuming 3 bytes.
@@ -813,7 +813,7 @@ fI[1] == strtod
 
 
 Input: -1.9
-strtod consumes 4 bytes and returns 25 with f = -1.8999999999999999 = #bffe6666 66666666
+strtord consumes 4 bytes and returns 25 with f = -1.8999999999999999 = #bffe6666 66666666
 g_dfmt(0) gives 4 bytes: "-1.9"
 
 strtoId returns 25, consuming 4 bytes.
@@ -824,7 +824,7 @@ fI[1] == strtod
 Rounding mode for strtor... changed from 2 (toward +Infinity) to 3 (toward -Infinity)
 
 Input: 1.1
-strtod consumes 3 bytes and returns 17 with f = 1.0999999999999999 = #3ff19999 99999999
+strtord consumes 3 bytes and returns 17 with f = 1.0999999999999999 = #3ff19999 99999999
 g_dfmt(0) gives 18 bytes: "1.0999999999999999"
 
 strtoId returns 33, consuming 3 bytes.
@@ -834,7 +834,7 @@ fI[0] == strtod
 
 
 Input: -1.1
-strtod consumes 4 bytes and returns 41 with f = -1.1000000000000001 = #bff19999 9999999a
+strtord consumes 4 bytes and returns 41 with f = -1.1000000000000001 = #bff19999 9999999a
 g_dfmt(0) gives 4 bytes: "-1.1"
 
 strtoId returns 41, consuming 4 bytes.
@@ -844,7 +844,7 @@ fI[0] == strtod
 
 
 Input: 1.2
-strtod consumes 3 bytes and returns 17 with f = 1.2 = #3ff33333 33333333
+strtord consumes 3 bytes and returns 17 with f = 1.2 = #3ff33333 33333333
 g_dfmt(0) gives 3 bytes: "1.2"
 
 strtoId returns 17, consuming 3 bytes.
@@ -854,7 +854,7 @@ fI[0] == strtod
 
 
 Input: -1.2
-strtod consumes 4 bytes and returns 41 with f = -1.2000000000000002 = #bff33333 33333334
+strtord consumes 4 bytes and returns 41 with f = -1.2000000000000002 = #bff33333 33333334
 g_dfmt(0) gives 19 bytes: "-1.2000000000000002"
 
 strtoId returns 25, consuming 4 bytes.
@@ -864,7 +864,7 @@ fI[0] == strtod
 
 
 Input: 1.3
-strtod consumes 3 bytes and returns 17 with f = 1.2999999999999998 = #3ff4cccc cccccccc
+strtord consumes 3 bytes and returns 17 with f = 1.2999999999999998 = #3ff4cccc cccccccc
 g_dfmt(0) gives 18 bytes: "1.2999999999999998"
 
 strtoId returns 33, consuming 3 bytes.
@@ -874,7 +874,7 @@ fI[0] == strtod
 
 
 Input: -1.3
-strtod consumes 4 bytes and returns 41 with f = -1.3 = #bff4cccc cccccccd
+strtord consumes 4 bytes and returns 41 with f = -1.3 = #bff4cccc cccccccd
 g_dfmt(0) gives 4 bytes: "-1.3"
 
 strtoId returns 41, consuming 4 bytes.
@@ -884,7 +884,7 @@ fI[0] == strtod
 
 
 Input: 1.4
-strtod consumes 3 bytes and returns 17 with f = 1.3999999999999999 = #3ff66666 66666666
+strtord consumes 3 bytes and returns 17 with f = 1.3999999999999999 = #3ff66666 66666666
 g_dfmt(0) gives 3 bytes: "1.4"
 
 strtoId returns 17, consuming 3 bytes.
@@ -894,7 +894,7 @@ fI[0] == strtod
 
 
 Input: -1.4
-strtod consumes 4 bytes and returns 41 with f = -1.4000000000000001 = #bff66666 66666667
+strtord consumes 4 bytes and returns 41 with f = -1.4000000000000001 = #bff66666 66666667
 g_dfmt(0) gives 19 bytes: "-1.4000000000000001"
 
 strtoId returns 25, consuming 4 bytes.
@@ -904,7 +904,7 @@ fI[0] == strtod
 
 
 Input: 1.5
-strtod consumes 3 bytes and returns 1 with f = 1.5 = #3ff80000 0
+strtord consumes 3 bytes and returns 1 with f = 1.5 = #3ff80000 0
 g_dfmt(0) gives 3 bytes: "1.5"
 
 strtoId returns 1, consuming 3 bytes.
@@ -912,7 +912,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: -1.5
-strtod consumes 4 bytes and returns 9 with f = -1.5 = #bff80000 0
+strtord consumes 4 bytes and returns 9 with f = -1.5 = #bff80000 0
 g_dfmt(0) gives 4 bytes: "-1.5"
 
 strtoId returns 9, consuming 4 bytes.
@@ -920,7 +920,7 @@ fI[0] == fI[1] == strtod
 
 
 Input: 1.6
-strtod consumes 3 bytes and returns 17 with f = 1.5999999999999999 = #3ff99999 99999999
+strtord consumes 3 bytes and returns 17 with f = 1.5999999999999999 = #3ff99999 99999999
 g_dfmt(0) gives 18 bytes: "1.5999999999999999"
 
 strtoId returns 33, consuming 3 bytes.
@@ -930,7 +930,7 @@ fI[0] == strtod
 
 
 Input: -1.6
-strtod consumes 4 bytes and returns 41 with f = -1.6000000000000001 = #bff99999 9999999a
+strtord consumes 4 bytes and returns 41 with f = -1.6000000000000001 = #bff99999 9999999a
 g_dfmt(0) gives 4 bytes: "-1.6"
 
 strtoId returns 41, consuming 4 bytes.
@@ -940,7 +940,7 @@ fI[0] == strtod
 
 
 Input: 1.7
-strtod consumes 3 bytes and returns 17 with f = 1.7 = #3ffb3333 33333333
+strtord consumes 3 bytes and returns 17 with f = 1.7 = #3ffb3333 33333333
 g_dfmt(0) gives 3 bytes: "1.7"
 
 strtoId returns 17, consuming 3 bytes.
@@ -950,7 +950,7 @@ fI[0] == strtod
 
 
 Input: -1.7
-strtod consumes 4 bytes and returns 41 with f = -1.7000000000000002 = #bffb3333 33333334
+strtord consumes 4 bytes and returns 41 with f = -1.7000000000000002 = #bffb3333 33333334
 g_dfmt(0) gives 19 bytes: "-1.7000000000000002"
 
 strtoId returns 25, consuming 4 bytes.
@@ -960,7 +960,7 @@ fI[0] == strtod
 
 
 Input: 1.8
-strtod consumes 3 bytes and returns 17 with f = 1.7999999999999998 = #3ffccccc cccccccc
+strtord consumes 3 bytes and returns 17 with f = 1.7999999999999998 = #3ffccccc cccccccc
 g_dfmt(0) gives 18 bytes: "1.7999999999999998"
 
 strtoId returns 33, consuming 3 bytes.
@@ -970,7 +970,7 @@ fI[0] == strtod
 
 
 Input: -1.8
-strtod consumes 4 bytes and returns 41 with f = -1.8 = #bffccccc cccccccd
+strtord consumes 4 bytes and returns 41 with f = -1.8 = #bffccccc cccccccd
 g_dfmt(0) gives 4 bytes: "-1.8"
 
 strtoId returns 41, consuming 4 bytes.
@@ -980,7 +980,7 @@ fI[0] == strtod
 
 
 Input: 1.9
-strtod consumes 3 bytes and returns 17 with f = 1.8999999999999999 = #3ffe6666 66666666
+strtord consumes 3 bytes and returns 17 with f = 1.8999999999999999 = #3ffe6666 66666666
 g_dfmt(0) gives 3 bytes: "1.9"
 
 strtoId returns 17, consuming 3 bytes.
@@ -990,7 +990,7 @@ fI[0] == strtod
 
 
 Input: -1.9
-strtod consumes 4 bytes and returns 41 with f = -1.9000000000000001 = #bffe6666 66666667
+strtord consumes 4 bytes and returns 41 with f = -1.9000000000000001 = #bffe6666 66666667
 g_dfmt(0) gives 19 bytes: "-1.9000000000000001"
 
 strtoId returns 25, consuming 4 bytes.

@@ -183,6 +183,14 @@ check(U *d)
 		}
 	}
 
+#ifdef USE_fpinit
+extern void fpinit_ASL();
+/* fpinit_ASL() appears in the AMPL/solver interface library and with */
+/* Intel 80x87-style processing, sets the rounding precision to 53 bits. */
+#else
+#define fpinit_ASL() /*nothing*/
+#endif
+
  int
 main(Void)
 {
@@ -196,6 +204,8 @@ main(Void)
 	ULong z;
 #endif
 
+	fpinit_ASL();
+	d.d = 0.;
 	while(fgets(buf, sizeof(buf), stdin)) {
 		if (*buf == '*') {
 			printf("%s", buf);

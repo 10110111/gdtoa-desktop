@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.0)
 project (gdtoa LANGUAGES C
-               VERSION 0.1.20160506)
+               VERSION 0.1.20180730)
 include("GNUInstallDirs")
 
 include_directories("${PROJECT_BINARY_DIR}")

@@ -1036,7 +1036,7 @@ strtodg
 				break;
 		  case FPI_Round_near:
  ret_inf:
-			irv = STRTOG_Infinite | STRTOG_Inexhi;
+			irv = STRTOG_Infinite | STRTOG_Overflow | STRTOG_Inexhi;
 			k = nbits >> kshift;
 			if (nbits & kmask)
 				++k;
