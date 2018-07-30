@@ -24,9 +24,10 @@ cmake ..
 make
 make install
 ```
-This will install three files:
+This will install the following files:
 ```
 /usr/local/lib/libgdtoa.so
+/usr/local/lib/pkgconfig/gdtoa.pc
 /usr/local/include/gdtoa/arith.h
 /usr/local/include/gdtoa/gdtoa.h
 ```
