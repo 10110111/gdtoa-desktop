@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.0)
-project (gdtoa LANGUAGES C
-               VERSION 0.1.20180730)
+project (gdtoa-desktop LANGUAGES C
+                       VERSION 0.1.20180730)
 include("GNUInstallDirs")
 
 include_directories("${PROJECT_BINARY_DIR}")
@@ -27,7 +27,7 @@ endif()
 
 if(RENAME_FUNCTIONS)
 # List of candidates for renaming was obtained via the following command on original library:
-# nm libgdtoa.so | sed -n 's@.* T \(.*\)@-D\1=gdtoa_\1@p'
+# nm libgdtoa-desktop.so | sed -n 's@.* T \(.*\)@-D\1=gdtoa_\1@p'
     add_definitions(
     -Dadd_nanbits_D2A=gdtoa_add_nanbits_D2A
     -Dany_on_D2A=gdtoa_any_on_D2A
@@ -178,7 +178,7 @@ add_custom_command(
     DEPENDS "${PROJECT_BINARY_DIR}/gd_qnan"
     VERBATIM)
 
-add_library(gdtoa ${gdtoa_SOURCES})
+add_library(gdtoa-desktop ${gdtoa_SOURCES})
 
 if(RENAME_FUNCTIONS)
     add_custom_command(
@@ -189,15 +189,15 @@ if(RENAME_FUNCTIONS)
     add_custom_target(gdtoa_h ALL DEPENDS "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h")
 endif()
 
-configure_file(gdtoa.pc.cmake "${PROJECT_BINARY_DIR}/gdtoa.pc" @ONLY)
+configure_file(gdtoa-desktop.pc.cmake "${PROJECT_BINARY_DIR}/gdtoa-desktop.pc" @ONLY)
 
-install(TARGETS gdtoa DESTINATION "${CMAKE_INSTALL_LIBDIR}")
-install(FILES "${PROJECT_BINARY_DIR}/arith.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/")
-install(FILES "${PROJECT_BINARY_DIR}/gdtoa.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
+install(TARGETS gdtoa-desktop DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+install(FILES "${PROJECT_BINARY_DIR}/arith.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/")
+install(FILES "${PROJECT_BINARY_DIR}/gdtoa-desktop.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
 if(RENAME_FUNCTIONS)
-    install(FILES "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/" RENAME gdtoa.h)
+    install(FILES "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/" RENAME gdtoa-desktop.h)
 else()
-    install(FILES "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa/")
+    install(FILES "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/")
 endif()
 
 # Tests
@@ -206,7 +206,7 @@ foreach(executable dt dItest ddtest dtest ftest Qtest xLtest xtest strtodt)
     add_executable(${executable} EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/${executable}.c"
                                                   "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
     target_include_directories(${executable} PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-    target_link_libraries(${executable} gdtoa m)
+    target_link_libraries(${executable} gdtoa-desktop m)
 endforeach()
 
 add_executable(ddtestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/ddtest.c"
@@ -215,19 +215,19 @@ add_executable(ddtestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/ddtes
                                          "${PROJECT_SOURCE_DIR}/gdtoa/test/strtoIddSI.c"
                                          "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
 target_include_directories(ddtestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-target_link_libraries(ddtestsi gdtoa)
+target_link_libraries(ddtestsi gdtoa-desktop)
 
 add_executable(dItestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/dItest.c"
                                          "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodISI.c"
                                          "${PROJECT_SOURCE_DIR}/gdtoa/test/strtoIdSI.c"
                                          "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
 target_include_directories(dItestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-target_link_libraries(dItestsi gdtoa)
+target_link_libraries(dItestsi gdtoa-desktop)
 
 add_executable(strtodtnrp EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/strtodnrp.c"
                                            "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodt.c")
 target_include_directories(strtodtnrp PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-target_link_libraries(strtodtnrp gdtoa)
+target_link_libraries(strtodtnrp gdtoa-desktop)
 
 add_executable(xQtest EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/xQtest.c")
 target_include_directories(xQtest PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
