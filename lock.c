@@ -2,7 +2,7 @@
 #include <string.h>
 #include <pthread.h>
 
-pthread_mutex_t mutexes[2]={PTHREAD_MUTEX_INITIALIZER,PTHREAD_MUTEX_INITIALIZER};
+static pthread_mutex_t mutexes[2]={PTHREAD_MUTEX_INITIALIZER,PTHREAD_MUTEX_INITIALIZER};
 
 void ACQUIRE_DTOA_LOCK(unsigned n)
 {
