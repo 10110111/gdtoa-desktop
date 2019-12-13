@@ -4,7 +4,7 @@ compiler: gcc
 addons:
     apt:
         packages:
-            - cmake3
+            - cmake
             - g++
             - gcc
 
