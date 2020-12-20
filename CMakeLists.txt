@@ -30,7 +30,7 @@ endif()
 if(GDTOA_RENAME_FUNCTIONS)
 # List of candidates for renaming was obtained via the following command on original library:
 # nm libgdtoa-desktop.so | sed -n 's@.* T \(.*\)@-D\1=gdtoa_\1@p'
-add_definitions(
+    add_definitions(
     -Dadd_nanbits_D2A=gdtoa_add_nanbits_D2A
     -Dany_on_D2A=gdtoa_any_on_D2A
     -Db2d_D2A=gdtoa_b2d_D2A
@@ -114,56 +114,56 @@ add_definitions(
 endif()
 
 set(gdtoa_SOURCES
-    gdtoa/dmisc.c
-    gdtoa/dtoa.c
-    gdtoa/g_Qfmt.c
-    gdtoa/g_Qfmt_p.c
-    gdtoa/g__fmt.c
-    gdtoa/g_ddfmt.c
-    gdtoa/g_ddfmt_p.c
-    gdtoa/g_dfmt.c
-    gdtoa/g_dfmt_p.c
-    gdtoa/g_ffmt.c
-    gdtoa/g_ffmt_p.c
-    gdtoa/g_xLfmt.c
-    gdtoa/g_xLfmt_p.c
-    gdtoa/g_xfmt.c
-    gdtoa/g_xfmt_p.c
-    gdtoa/gdtoa.c
-    gdtoa/gethex.c
-    gdtoa/gmisc.c
-    gdtoa/hd_init.c
-    gdtoa/hexnan.c
-    gdtoa/misc.c
-    gdtoa/smisc.c
-    gdtoa/strtoIQ.c
-    gdtoa/strtoId.c
-    gdtoa/strtoIdd.c
-    gdtoa/strtoIf.c
-    gdtoa/strtoIg.c
-    gdtoa/strtoIx.c
-    gdtoa/strtoIxL.c
-    gdtoa/${strtod_c}
-    gdtoa/strtodI.c
-    gdtoa/strtodg.c
-    gdtoa/strtof.c
-    gdtoa/strtopQ.c
-    gdtoa/strtopd.c
-    gdtoa/strtopdd.c
-    gdtoa/strtopf.c
-    gdtoa/strtopx.c
-    gdtoa/strtopxL.c
-    gdtoa/strtorQ.c
-    gdtoa/strtord.c
-    gdtoa/strtordd.c
-    gdtoa/strtorf.c
-    gdtoa/strtorx.c
-    gdtoa/strtorxL.c
-    gdtoa/sum.c
-    gdtoa/ulp.c
-    lock.c
-    "${PROJECT_BINARY_DIR}/arith.h"
-    "${PROJECT_BINARY_DIR}/gd_qnan.h"
+        gdtoa/dmisc.c
+	    gdtoa/dtoa.c
+	    gdtoa/g_Qfmt.c
+	    gdtoa/g_Qfmt_p.c
+	    gdtoa/g__fmt.c
+	    gdtoa/g_ddfmt.c
+	    gdtoa/g_ddfmt_p.c
+	    gdtoa/g_dfmt.c
+	    gdtoa/g_dfmt_p.c
+	    gdtoa/g_ffmt.c
+	    gdtoa/g_ffmt_p.c
+	    gdtoa/g_xLfmt.c
+	    gdtoa/g_xLfmt_p.c
+	    gdtoa/g_xfmt.c
+	    gdtoa/g_xfmt_p.c
+	    gdtoa/gdtoa.c
+	    gdtoa/gethex.c
+	    gdtoa/gmisc.c
+	    gdtoa/hd_init.c
+	    gdtoa/hexnan.c
+	    gdtoa/misc.c
+	    gdtoa/smisc.c
+	    gdtoa/strtoIQ.c
+	    gdtoa/strtoId.c
+	    gdtoa/strtoIdd.c
+	    gdtoa/strtoIf.c
+	    gdtoa/strtoIg.c
+	    gdtoa/strtoIx.c
+	    gdtoa/strtoIxL.c
+	    gdtoa/${strtod_c}
+	    gdtoa/strtodI.c
+	    gdtoa/strtodg.c
+	    gdtoa/strtof.c
+	    gdtoa/strtopQ.c
+	    gdtoa/strtopd.c
+	    gdtoa/strtopdd.c
+	    gdtoa/strtopf.c
+	    gdtoa/strtopx.c
+	    gdtoa/strtopxL.c
+	    gdtoa/strtorQ.c
+	    gdtoa/strtord.c
+	    gdtoa/strtordd.c
+	    gdtoa/strtorf.c
+	    gdtoa/strtorx.c
+	    gdtoa/strtorxL.c
+	    gdtoa/sum.c
+	    gdtoa/ulp.c
+        lock.c
+        "${PROJECT_BINARY_DIR}/arith.h"
+        "${PROJECT_BINARY_DIR}/gd_qnan.h"
 )
 
 add_executable(arithchk gdtoa/arithchk.c)
