@@ -1,17 +1,19 @@
 cmake_minimum_required (VERSION 3.0)
 project (gdtoa-desktop LANGUAGES C
                        VERSION 0.1.20180730)
-include("GNUInstallDirs")
 
-include_directories("${PROJECT_BINARY_DIR}")
-option(BUILD_SHARED_LIBS "Build shared library instead of static" ON)
-option(USE_LOCALE "Enable support for locale-specific decimal separator" ON)
-option(RENAME_FUNCTIONS "Rename externally-visible functions to avoid conflict with system libraries" ON)
-option(ENABLE_SSE2 "Use SSE2 instructions instead of x87 to avoid inconsistent rounding" ON)
+if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
+    option(BUILD_SHARED_LIBS "Build shared library instead of static" ON)
+    include("GNUInstallDirs")
+endif()
+
+option(GDTOA_USE_LOCALE       "Enable support for locale-specific decimal separator" ON)
+option(GDTOA_RENAME_FUNCTIONS "Rename externally-visible functions to avoid conflict with system libraries" ON)
+option(GDTOA_ENABLE_SSE2      "Use SSE2 instructions instead of x87 to avoid inconsistent rounding" ON)
 
 set(strtod_c strtod.c)
 if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "i686")
-    if(ENABLE_SSE2)
+    if(GDTOA_ENABLE_SSE2)
         message("++ Assuming the CPU does support SSE2, setting compiler flags to use it instead of x87")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse2 -mfpmath=sse")
     else()
@@ -21,14 +23,14 @@ if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "i686")
 endif()
 
 add_definitions(-DMULTIPLE_THREADS)
-if(USE_LOCALE)
+if(GDTOA_USE_LOCALE)
     add_definitions(-DUSE_LOCALE)
 endif()
 
-if(RENAME_FUNCTIONS)
+if(GDTOA_RENAME_FUNCTIONS)
 # List of candidates for renaming was obtained via the following command on original library:
 # nm libgdtoa-desktop.so | sed -n 's@.* T \(.*\)@-D\1=gdtoa_\1@p'
-    add_definitions(
+add_definitions(
     -Dadd_nanbits_D2A=gdtoa_add_nanbits_D2A
     -Dany_on_D2A=gdtoa_any_on_D2A
     -Db2d_D2A=gdtoa_b2d_D2A
@@ -112,56 +114,56 @@ if(RENAME_FUNCTIONS)
 endif()
 
 set(gdtoa_SOURCES
-        gdtoa/dmisc.c
-	    gdtoa/dtoa.c
-	    gdtoa/g_Qfmt.c
-	    gdtoa/g_Qfmt_p.c
-	    gdtoa/g__fmt.c
-	    gdtoa/g_ddfmt.c
-	    gdtoa/g_ddfmt_p.c
-	    gdtoa/g_dfmt.c
-	    gdtoa/g_dfmt_p.c
-	    gdtoa/g_ffmt.c
-	    gdtoa/g_ffmt_p.c
-	    gdtoa/g_xLfmt.c
-	    gdtoa/g_xLfmt_p.c
-	    gdtoa/g_xfmt.c
-	    gdtoa/g_xfmt_p.c
-	    gdtoa/gdtoa.c
-	    gdtoa/gethex.c
-	    gdtoa/gmisc.c
-	    gdtoa/hd_init.c
-	    gdtoa/hexnan.c
-	    gdtoa/misc.c
-	    gdtoa/smisc.c
-	    gdtoa/strtoIQ.c
-	    gdtoa/strtoId.c
-	    gdtoa/strtoIdd.c
-	    gdtoa/strtoIf.c
-	    gdtoa/strtoIg.c
-	    gdtoa/strtoIx.c
-	    gdtoa/strtoIxL.c
-	    gdtoa/${strtod_c}
-	    gdtoa/strtodI.c
-	    gdtoa/strtodg.c
-	    gdtoa/strtof.c
-	    gdtoa/strtopQ.c
-	    gdtoa/strtopd.c
-	    gdtoa/strtopdd.c
-	    gdtoa/strtopf.c
-	    gdtoa/strtopx.c
-	    gdtoa/strtopxL.c
-	    gdtoa/strtorQ.c
-	    gdtoa/strtord.c
-	    gdtoa/strtordd.c
-	    gdtoa/strtorf.c
-	    gdtoa/strtorx.c
-	    gdtoa/strtorxL.c
-	    gdtoa/sum.c
-	    gdtoa/ulp.c
-        lock.c
-        "${PROJECT_BINARY_DIR}/arith.h"
-        "${PROJECT_BINARY_DIR}/gd_qnan.h"
+    gdtoa/dmisc.c
+    gdtoa/dtoa.c
+    gdtoa/g_Qfmt.c
+    gdtoa/g_Qfmt_p.c
+    gdtoa/g__fmt.c
+    gdtoa/g_ddfmt.c
+    gdtoa/g_ddfmt_p.c
+    gdtoa/g_dfmt.c
+    gdtoa/g_dfmt_p.c
+    gdtoa/g_ffmt.c
+    gdtoa/g_ffmt_p.c
+    gdtoa/g_xLfmt.c
+    gdtoa/g_xLfmt_p.c
+    gdtoa/g_xfmt.c
+    gdtoa/g_xfmt_p.c
+    gdtoa/gdtoa.c
+    gdtoa/gethex.c
+    gdtoa/gmisc.c
+    gdtoa/hd_init.c
+    gdtoa/hexnan.c
+    gdtoa/misc.c
+    gdtoa/smisc.c
+    gdtoa/strtoIQ.c
+    gdtoa/strtoId.c
+    gdtoa/strtoIdd.c
+    gdtoa/strtoIf.c
+    gdtoa/strtoIg.c
+    gdtoa/strtoIx.c
+    gdtoa/strtoIxL.c
+    gdtoa/${strtod_c}
+    gdtoa/strtodI.c
+    gdtoa/strtodg.c
+    gdtoa/strtof.c
+    gdtoa/strtopQ.c
+    gdtoa/strtopd.c
+    gdtoa/strtopdd.c
+    gdtoa/strtopf.c
+    gdtoa/strtopx.c
+    gdtoa/strtopxL.c
+    gdtoa/strtorQ.c
+    gdtoa/strtord.c
+    gdtoa/strtordd.c
+    gdtoa/strtorf.c
+    gdtoa/strtorx.c
+    gdtoa/strtorxL.c
+    gdtoa/sum.c
+    gdtoa/ulp.c
+    lock.c
+    "${PROJECT_BINARY_DIR}/arith.h"
+    "${PROJECT_BINARY_DIR}/gd_qnan.h"
 )
 
 add_executable(arithchk gdtoa/arithchk.c)
@@ -171,6 +173,11 @@ add_custom_command(
     DEPENDS "${PROJECT_BINARY_DIR}/arithchk"
     VERBATIM)
 
+target_include_directories(arithchk
+PUBLIC
+    ${PROJECT_BINARY_DIR}
+)
+
 add_executable(gd_qnan gdtoa/qnan.c "${PROJECT_BINARY_DIR}/arith.h")
 add_custom_command(
     OUTPUT "${PROJECT_BINARY_DIR}/gd_qnan.h"
@@ -178,9 +185,19 @@ add_custom_command(
     DEPENDS "${PROJECT_BINARY_DIR}/gd_qnan"
     VERBATIM)
 
+target_include_directories(gd_qnan
+PUBLIC
+    ${PROJECT_BINARY_DIR}
+)
+
 add_library(gdtoa-desktop ${gdtoa_SOURCES})
 
-if(RENAME_FUNCTIONS)
+target_include_directories(gdtoa-desktop
+PUBLIC
+    ${PROJECT_BINARY_DIR}
+)
+
+if(GDTOA_RENAME_FUNCTIONS)
     add_custom_command(
         OUTPUT "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h"
         COMMAND ${PROJECT_SOURCE_DIR}/rename-functions.sh "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h"
@@ -189,58 +206,60 @@ if(RENAME_FUNCTIONS)
     add_custom_target(gdtoa_h ALL DEPENDS "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h")
 endif()
 
-configure_file(gdtoa-desktop.pc.cmake "${PROJECT_BINARY_DIR}/gdtoa-desktop.pc" @ONLY)
+if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
+    configure_file(gdtoa-desktop.pc.cmake "${PROJECT_BINARY_DIR}/gdtoa-desktop.pc" @ONLY)
 
-install(TARGETS gdtoa-desktop DESTINATION "${CMAKE_INSTALL_LIBDIR}")
-install(FILES "${PROJECT_BINARY_DIR}/arith.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/")
-install(FILES "${PROJECT_BINARY_DIR}/gdtoa-desktop.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
-if(RENAME_FUNCTIONS)
-    install(FILES "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/" RENAME gdtoa-desktop.h)
-else()
-    install(FILES "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/")
+    install(TARGETS gdtoa-desktop DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+    install(FILES "${PROJECT_BINARY_DIR}/arith.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/")
+    install(FILES "${PROJECT_BINARY_DIR}/gdtoa-desktop.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
+    if(GDTOA_RENAME_FUNCTIONS)
+        install(FILES "${PROJECT_BINARY_DIR}/gdtoa-functions-renamed.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/" RENAME gdtoa-desktop.h)
+    else()
+        install(FILES "${PROJECT_SOURCE_DIR}/gdtoa/gdtoa.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/gdtoa-desktop/")
+    endif()
+
+    # Tests
+
+    foreach(executable dt dItest ddtest dtest ftest Qtest xLtest xtest strtodt)
+        add_executable(${executable} EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/${executable}.c"
+                                                      "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
+        target_include_directories(${executable} PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+        target_link_libraries(${executable} gdtoa-desktop m)
+    endforeach()
+
+    add_executable(ddtestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/ddtest.c"
+                                             "${PROJECT_SOURCE_DIR}/gdtoa/test/strtopddSI.c"
+                                             "${PROJECT_SOURCE_DIR}/gdtoa/test/strtorddSI.c"
+                                             "${PROJECT_SOURCE_DIR}/gdtoa/test/strtoIddSI.c"
+                                             "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
+    target_include_directories(ddtestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+    target_link_libraries(ddtestsi gdtoa-desktop)
+
+    add_executable(dItestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/dItest.c"
+                                             "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodISI.c"
+                                             "${PROJECT_SOURCE_DIR}/gdtoa/test/strtoIdSI.c"
+                                             "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
+    target_include_directories(dItestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+    target_link_libraries(dItestsi gdtoa-desktop)
+
+    add_executable(strtodtnrp EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/strtodnrp.c"
+                                               "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodt.c")
+    target_include_directories(strtodtnrp PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+    target_link_libraries(strtodtnrp gdtoa-desktop)
+
+    add_executable(xQtest EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/xQtest.c")
+    target_include_directories(xQtest PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
+    add_custom_command(
+        OUTPUT Q.out x.out xL.out
+        COMMAND cd "${PROJECT_BINARY_DIR}" && ./xQtest | sed "s@cp @cp ${PROJECT_SOURCE_DIR}/gdtoa/test/@g" | sh
+        DEPENDS xQtest
+        VERBATIM)
+    add_custom_target(Q_out DEPENDS "${PROJECT_BINARY_DIR}/Q.out")
+    add_custom_target(x_out DEPENDS "${PROJECT_BINARY_DIR}/x.out")
+    add_custom_target(xL_out DEPENDS "${PROJECT_BINARY_DIR}/xL.out")
+
+    add_custom_target(check
+        DEPENDS Q_out x_out xL_out dt dItest ddtest dtest ftest Qtest xLtest xtest ddtestsi dItestsi strtodt strtodtnrp
+        COMMAND "${PROJECT_SOURCE_DIR}/run-tests.sh" "${PROJECT_SOURCE_DIR}/gdtoa/test" "${PROJECT_BINARY_DIR}"
+        VERBATIM)
 endif()
-
-# Tests
-
-foreach(executable dt dItest ddtest dtest ftest Qtest xLtest xtest strtodt)
-    add_executable(${executable} EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/${executable}.c"
-                                                  "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
-    target_include_directories(${executable} PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-    target_link_libraries(${executable} gdtoa-desktop m)
-endforeach()
-
-add_executable(ddtestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/ddtest.c"
-                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtopddSI.c"
-                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtorddSI.c"
-                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtoIddSI.c"
-                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
-target_include_directories(ddtestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-target_link_libraries(ddtestsi gdtoa-desktop)
-
-add_executable(dItestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/dItest.c"
-                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodISI.c"
-                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/strtoIdSI.c"
-                                         "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
-target_include_directories(dItestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-target_link_libraries(dItestsi gdtoa-desktop)
-
-add_executable(strtodtnrp EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/strtodnrp.c"
-                                           "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodt.c")
-target_include_directories(strtodtnrp PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-target_link_libraries(strtodtnrp gdtoa-desktop)
-
-add_executable(xQtest EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/xQtest.c")
-target_include_directories(xQtest PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
-add_custom_command(
-    OUTPUT Q.out x.out xL.out
-    COMMAND cd "${PROJECT_BINARY_DIR}" && ./xQtest | sed "s@cp @cp ${PROJECT_SOURCE_DIR}/gdtoa/test/@g" | sh
-    DEPENDS xQtest
-    VERBATIM)
-add_custom_target(Q_out DEPENDS "${PROJECT_BINARY_DIR}/Q.out")
-add_custom_target(x_out DEPENDS "${PROJECT_BINARY_DIR}/x.out")
-add_custom_target(xL_out DEPENDS "${PROJECT_BINARY_DIR}/xL.out")
-
-add_custom_target(check
-    DEPENDS Q_out x_out xL_out dt dItest ddtest dtest ftest Qtest xLtest xtest ddtestsi dItestsi strtodt strtodtnrp
-    COMMAND "${PROJECT_SOURCE_DIR}/run-tests.sh" "${PROJECT_SOURCE_DIR}/gdtoa/test" "${PROJECT_BINARY_DIR}"
-    VERBATIM)
