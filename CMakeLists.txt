@@ -169,8 +169,8 @@ set(gdtoa_SOURCES
 add_executable(arithchk gdtoa/arithchk.c)
 add_custom_command(
     OUTPUT "${PROJECT_BINARY_DIR}/arith.h"
-    COMMAND "${PROJECT_BINARY_DIR}/arithchk" > "${PROJECT_BINARY_DIR}/arith.h"
-    DEPENDS "${PROJECT_BINARY_DIR}/arithchk"
+    COMMAND "$<TARGET_FILE:arithchk>" > "${PROJECT_BINARY_DIR}/arith.h"
+    DEPENDS "$<TARGET_FILE:arithchk>"
     VERBATIM)
 
 target_include_directories(arithchk
@@ -181,8 +181,8 @@ PUBLIC
 add_executable(gd_qnan gdtoa/qnan.c "${PROJECT_BINARY_DIR}/arith.h")
 add_custom_command(
     OUTPUT "${PROJECT_BINARY_DIR}/gd_qnan.h"
-    COMMAND "${PROJECT_BINARY_DIR}/gd_qnan" > "${PROJECT_BINARY_DIR}/gd_qnan.h"
-    DEPENDS "${PROJECT_BINARY_DIR}/gd_qnan"
+    COMMAND "$<TARGET_FILE:gd_qnan>" > "${PROJECT_BINARY_DIR}/gd_qnan.h"
+    DEPENDS "$<TARGET_FILE:gd_qnan>"
     VERBATIM)
 
 target_include_directories(gd_qnan
