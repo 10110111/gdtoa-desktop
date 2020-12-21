@@ -22,11 +22,6 @@ if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "i686")
     endif()
 endif()
 
-add_definitions(-DMULTIPLE_THREADS)
-if(GDTOA_USE_LOCALE)
-    add_definitions(-DUSE_LOCALE)
-endif()
-
 set(gdtoa_SOURCES
         gdtoa/dmisc.c
 	    gdtoa/dtoa.c
@@ -110,6 +105,11 @@ target_include_directories(gdtoa-desktop
 PUBLIC
     ${PROJECT_BINARY_DIR}
 )
+
+target_compile_definitions(gdtoa-desktop PRIVATE -DMULTIPLE_THREADS)
+if(GDTOA_USE_LOCALE)
+    target_compile_definitions(gdtoa-desktop PRIVATE -DUSE_LOCALE)
+endif()
 
 if(GDTOA_RENAME_FUNCTIONS)
     # List of candidates for renaming was obtained via the following command on original library:
