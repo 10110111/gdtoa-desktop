@@ -22,96 +22,91 @@ if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "i686")
     endif()
 endif()
 
-add_definitions(-DMULTIPLE_THREADS)
-if(GDTOA_USE_LOCALE)
-    add_definitions(-DUSE_LOCALE)
-endif()
-
-if(GDTOA_RENAME_FUNCTIONS)
-# List of candidates for renaming was obtained via the following command on original library:
-# nm libgdtoa-desktop.so | sed -n 's@.* T \(.*\)@-D\1=gdtoa_\1@p'
-    add_definitions(
-    -Dadd_nanbits_D2A=gdtoa_add_nanbits_D2A
-    -Dany_on_D2A=gdtoa_any_on_D2A
-    -Db2d_D2A=gdtoa_b2d_D2A
-    -DBalloc_D2A=gdtoa_Balloc_D2A
-    -DBfree_D2A=gdtoa_Bfree_D2A
-    -Dcmp_D2A=gdtoa_cmp_D2A
-    -Dcopybits_D2A=gdtoa_copybits_D2A
-    -Dd2b_D2A=gdtoa_d2b_D2A
-    -Ddecrement_D2A=gdtoa_decrement_D2A
-    -Ddiff_D2A=gdtoa_diff_D2A
-    -Ddtoa=gdtoa_dtoa
-    -D_fini=gdtoa__fini
-    -Dfreedtoa=gdtoa_freedtoa
-    -Dg_ddfmt=gdtoa_g_ddfmt
-    -Dg_ddfmt_p=gdtoa_g_ddfmt_p
-    -Dg_dfmt=gdtoa_g_dfmt
-    -Dg_dfmt_p=gdtoa_g_dfmt_p
-    -Dgdtoa=gdtoa_gdtoa
-    -Dgethex_D2A=gdtoa_gethex_D2A
-    -Dg_ffmt=gdtoa_g_ffmt
-    -Dg_ffmt_p=gdtoa_g_ffmt_p
-    -Dg__fmt_D2A=gdtoa_g__fmt_D2A
-    -Dg_Qfmt=gdtoa_g_Qfmt
-    -Dg_Qfmt_p=gdtoa_g_Qfmt_p
-    -Dg_xfmt=gdtoa_g_xfmt
-    -Dg_xfmt_p=gdtoa_g_xfmt_p
-    -Dg_xLfmt=gdtoa_g_xLfmt
-    -Dg_xLfmt_p=gdtoa_g_xLfmt_p
-    -Dhexnan_D2A=gdtoa_hexnan_D2A
-    -Dhi0bits_D2A=gdtoa_hi0bits_D2A
-    -Di2b_D2A=gdtoa_i2b_D2A
-    -Dincrement_D2A=gdtoa_increment_D2A
-    -D_init=gdtoa__init
-    -Dlo0bits_D2A=gdtoa_lo0bits_D2A
-    -Dlshift_D2A=gdtoa_lshift_D2A
-    -Dmatch_D2A=gdtoa_match_D2A
-    -Dmultadd_D2A=gdtoa_multadd_D2A
-    -Dmult_D2A=gdtoa_mult_D2A
-    -Dnrv_alloc_D2A=gdtoa_nrv_alloc_D2A
-    -Dpow5mult_D2A=gdtoa_pow5mult_D2A
-    -Dquorem_D2A=gdtoa_quorem_D2A
-    -Dratio_D2A=gdtoa_ratio_D2A
-    -Drshift_D2A=gdtoa_rshift_D2A
-    -Drv_alloc_D2A=gdtoa_rv_alloc_D2A
-    -Ds2b_D2A=gdtoa_s2b_D2A
-    -Dset_ones_D2A=gdtoa_set_ones_D2A
-    -Dstrcp_D2A=gdtoa_strcp_D2A
-    -Dstrtod=gdtoa_strtod
-    -Dstrtodg=gdtoa_strtodg
-    -DstrtodI=gdtoa_strtodI
-    -Dstrtof=gdtoa_strtof
-    -DstrtoId=gdtoa_strtoId
-    -DstrtoIdd=gdtoa_strtoIdd
-    -DstrtoIf=gdtoa_strtoIf
-    -DstrtoIg_D2A=gdtoa_strtoIg_D2A
-    -DstrtoIQ=gdtoa_strtoIQ
-    -DstrtoIx=gdtoa_strtoIx
-    -DstrtoIxL=gdtoa_strtoIxL
-    -Dstrtopd=gdtoa_strtopd
-    -Dstrtopdd=gdtoa_strtopdd
-    -Dstrtopf=gdtoa_strtopf
-    -DstrtopQ=gdtoa_strtopQ
-    -Dstrtopx=gdtoa_strtopx
-    -DstrtopxL=gdtoa_strtopxL
-    -Dstrtord=gdtoa_strtord
-    -Dstrtordd=gdtoa_strtordd
-    -Dstrtorf=gdtoa_strtorf
-    -DstrtorQ=gdtoa_strtorQ
-    -Dstrtorx=gdtoa_strtorx
-    -DstrtorxL=gdtoa_strtorxL
-    -Dsum_D2A=gdtoa_sum_D2A
-    -Dtrailz_D2A=gdtoa_trailz_D2A
-    -Dulp_D2A=gdtoa_ulp_D2A
-    -DULtod_D2A=gdtoa_ULtod_D2A
-    -DULtodd_D2A=gdtoa_ULtodd_D2A
-    -DULtof_D2A=gdtoa_ULtof_D2A
-    -DULtoQ_D2A=gdtoa_ULtoQ_D2A
-    -DULtox_D2A=gdtoa_ULtox_D2A
-    -DULtoxL_D2A=gdtoa_ULtoxL_D2A
-    )
-endif()
+function(TARGET_ADD_RENAMES TARGET ACCESS)
+    if(GDTOA_RENAME_FUNCTIONS)
+        target_compile_definitions(${TARGET} ${ACCESS}
+            -Dadd_nanbits_D2A=gdtoa_add_nanbits_D2A
+            -Dany_on_D2A=gdtoa_any_on_D2A
+            -Db2d_D2A=gdtoa_b2d_D2A
+            -DBalloc_D2A=gdtoa_Balloc_D2A
+            -DBfree_D2A=gdtoa_Bfree_D2A
+            -Dcmp_D2A=gdtoa_cmp_D2A
+            -Dcopybits_D2A=gdtoa_copybits_D2A
+            -Dd2b_D2A=gdtoa_d2b_D2A
+            -Ddecrement_D2A=gdtoa_decrement_D2A
+            -Ddiff_D2A=gdtoa_diff_D2A
+            -Ddtoa=gdtoa_dtoa
+            -D_fini=gdtoa__fini
+            -Dfreedtoa=gdtoa_freedtoa
+            -Dg_ddfmt=gdtoa_g_ddfmt
+            -Dg_ddfmt_p=gdtoa_g_ddfmt_p
+            -Dg_dfmt=gdtoa_g_dfmt
+            -Dg_dfmt_p=gdtoa_g_dfmt_p
+            -Dgdtoa=gdtoa_gdtoa
+            -Dgethex_D2A=gdtoa_gethex_D2A
+            -Dg_ffmt=gdtoa_g_ffmt
+            -Dg_ffmt_p=gdtoa_g_ffmt_p
+            -Dg__fmt_D2A=gdtoa_g__fmt_D2A
+            -Dg_Qfmt=gdtoa_g_Qfmt
+            -Dg_Qfmt_p=gdtoa_g_Qfmt_p
+            -Dg_xfmt=gdtoa_g_xfmt
+            -Dg_xfmt_p=gdtoa_g_xfmt_p
+            -Dg_xLfmt=gdtoa_g_xLfmt
+            -Dg_xLfmt_p=gdtoa_g_xLfmt_p
+            -Dhexnan_D2A=gdtoa_hexnan_D2A
+            -Dhi0bits_D2A=gdtoa_hi0bits_D2A
+            -Di2b_D2A=gdtoa_i2b_D2A
+            -Dincrement_D2A=gdtoa_increment_D2A
+            -D_init=gdtoa__init
+            -Dlo0bits_D2A=gdtoa_lo0bits_D2A
+            -Dlshift_D2A=gdtoa_lshift_D2A
+            -Dmatch_D2A=gdtoa_match_D2A
+            -Dmultadd_D2A=gdtoa_multadd_D2A
+            -Dmult_D2A=gdtoa_mult_D2A
+            -Dnrv_alloc_D2A=gdtoa_nrv_alloc_D2A
+            -Dpow5mult_D2A=gdtoa_pow5mult_D2A
+            -Dquorem_D2A=gdtoa_quorem_D2A
+            -Dratio_D2A=gdtoa_ratio_D2A
+            -Drshift_D2A=gdtoa_rshift_D2A
+            -Drv_alloc_D2A=gdtoa_rv_alloc_D2A
+            -Ds2b_D2A=gdtoa_s2b_D2A
+            -Dset_ones_D2A=gdtoa_set_ones_D2A
+            -Dstrcp_D2A=gdtoa_strcp_D2A
+            -Dstrtod=gdtoa_strtod
+            -Dstrtodg=gdtoa_strtodg
+            -DstrtodI=gdtoa_strtodI
+            -Dstrtof=gdtoa_strtof
+            -DstrtoId=gdtoa_strtoId
+            -DstrtoIdd=gdtoa_strtoIdd
+            -DstrtoIf=gdtoa_strtoIf
+            -DstrtoIg_D2A=gdtoa_strtoIg_D2A
+            -DstrtoIQ=gdtoa_strtoIQ
+            -DstrtoIx=gdtoa_strtoIx
+            -DstrtoIxL=gdtoa_strtoIxL
+            -Dstrtopd=gdtoa_strtopd
+            -Dstrtopdd=gdtoa_strtopdd
+            -Dstrtopf=gdtoa_strtopf
+            -DstrtopQ=gdtoa_strtopQ
+            -Dstrtopx=gdtoa_strtopx
+            -DstrtopxL=gdtoa_strtopxL
+            -Dstrtord=gdtoa_strtord
+            -Dstrtordd=gdtoa_strtordd
+            -Dstrtorf=gdtoa_strtorf
+            -DstrtorQ=gdtoa_strtorQ
+            -Dstrtorx=gdtoa_strtorx
+            -DstrtorxL=gdtoa_strtorxL
+            -Dsum_D2A=gdtoa_sum_D2A
+            -Dtrailz_D2A=gdtoa_trailz_D2A
+            -Dulp_D2A=gdtoa_ulp_D2A
+            -DULtod_D2A=gdtoa_ULtod_D2A
+            -DULtodd_D2A=gdtoa_ULtodd_D2A
+            -DULtof_D2A=gdtoa_ULtof_D2A
+            -DULtoQ_D2A=gdtoa_ULtoQ_D2A
+            -DULtox_D2A=gdtoa_ULtox_D2A
+            -DULtoxL_D2A=gdtoa_ULtoxL_D2A
+        )
+    endif()
+endfunction()
 
 set(gdtoa_SOURCES
         gdtoa/dmisc.c
@@ -192,6 +187,13 @@ PUBLIC
 
 add_library(gdtoa-desktop ${gdtoa_SOURCES})
 
+target_add_renames(gdtoa-desktop PRIVATE)
+
+target_compile_definitions(gdtoa-desktop PUBLIC -DMULTIPLE_THREADS)
+if(GDTOA_USE_LOCALE)
+    target_compile_definitions(gdtoa-desktop PRIVATE -DUSE_LOCALE)
+endif()
+
 target_include_directories(gdtoa-desktop
 PUBLIC
     ${PROJECT_BINARY_DIR}
@@ -225,6 +227,9 @@ if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
                                                       "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
         target_include_directories(${executable} PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
         target_link_libraries(${executable} gdtoa-desktop m)
+
+        target_add_renames(${executable} PRIVATE)
+
     endforeach()
 
     add_executable(ddtestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/ddtest.c"
@@ -234,6 +239,7 @@ if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
                                              "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
     target_include_directories(ddtestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
     target_link_libraries(ddtestsi gdtoa-desktop)
+    target_add_renames(ddtestsi PRIVATE)
 
     add_executable(dItestsi EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/dItest.c"
                                              "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodISI.c"
@@ -241,11 +247,13 @@ if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
                                              "${PROJECT_SOURCE_DIR}/gdtoa/test/getround.c")
     target_include_directories(dItestsi PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
     target_link_libraries(dItestsi gdtoa-desktop)
+    target_add_renames(dItestsi PRIVATE)
 
     add_executable(strtodtnrp EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/strtodnrp.c"
                                                "${PROJECT_SOURCE_DIR}/gdtoa/test/strtodt.c")
     target_include_directories(strtodtnrp PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
     target_link_libraries(strtodtnrp gdtoa-desktop)
+    target_add_renames(strtodtnrp PRIVATE)
 
     add_executable(xQtest EXCLUDE_FROM_ALL "${PROJECT_SOURCE_DIR}/gdtoa/test/xQtest.c")
     target_include_directories(xQtest PRIVATE "${PROJECT_SOURCE_DIR}/gdtoa/")
